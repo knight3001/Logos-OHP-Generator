@@ -65,7 +65,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>A. 早禱會</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipSongSelector" data-target="a">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="a">新增</button>
                                 </span>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>B. 敬拜讚美</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipSongSelector" data-target="b">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="b">新增</button>
                                 </span>
                             </div>
                         </div>
@@ -97,7 +97,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>C. 主日 - 唱詩 (1)</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newHymnSongSelector" data-target="c">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="c">新增</button>
                                 </span>
                             </div>
                         </div>
@@ -113,40 +113,12 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>D. 主日 - 讀經 (2)</h4>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat newReadingSelector" data-target="d">新增</button>
+                                <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="d">新增</button>
                                 </span>
                             </div>
                         </div>
                         <div class="box-body" id="d">
-                            <div class="input-group input-group-sm rootGroup" data-reading-index="123">
-                                <span class="input-group-addon deleteBtn">
-                                    <i class="fa fa-close"></i>
-                                </span>
-                                <div class="col-md-3">
-                                    <label>卷</label>
-                                    <select class="form-control bookSelector" name="reading[]">
-                                        <option value=""></option>
-                                        <?php foreach (\Core\VerseTable::$table as $shortName => $details) { ?>
-                                            <option value="<?= $details[2]; ?>"><?php echo "$shortName - {$details[0]}"; ?></option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>章</label>
-                                    <select class="form-control chapterSelector" name="chapter[]">
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>開始</label>
-                                    <select class="form-control segmentStartSelector" name="start[]">
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>結束</label>
-                                    <select class="form-control segmentEndSelector" name="end[]">
-                                    </select>
-                                </div>
-                            </div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -157,7 +129,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>E. 主日 - 唱詩 (3)</h4>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat newHymnSongSelector" data-target="e">新增</button>
+                                <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="e">新增</button>
                                 </span>
                             </div>
                         </div>
@@ -286,7 +258,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>K. 唱詩</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" id="newHymnSongSelector" data-target="k">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat" id="newHymnBtn" data-target="k">新增</button>
                                 </span>
                             </div>
                         </div>
@@ -301,11 +273,11 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 </body>
 <script src="assets/jquery-3.2.1.min.js"></script>
 <script>
+	$(document).on('click', '.deleteBtn', function() {
+		$(this).parents('.rootGroup').remove();
+	});
+
     $(document).ready(function() {
-        $('.deleteBtn').on('click', function() {
-            alert('test');
-            $(this).parents('.rootGroup').remove();
-        });
 //        $('#newMorningWorshipSongSelector').on('click', function() {
 //            $('#morningWorshipSongs').append("" +
 //                "<div class=\"input-group input-group-sm\">" +
@@ -324,7 +296,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 //                "   </select>" +
 //                "</div>");
 //        });
-        $('.newWorshipSongSelector').on('click', function() {
+        $('.newWorshipBtn').on('click', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
@@ -343,7 +315,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
-        $('.newHymnSongSelector').on('click', function() {
+        $('.newHymnBtn').on('click', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
@@ -362,6 +334,42 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
+		$('.newReadingBtn').on('click', function() {
+            var holder = $(this).data('target');
+            $('#' + holder).append("" +
+				"<div class=\"input-group input-group-sm rootGroup\" data-reading-index=\"123\">" +
+				"	<span class=\"input-group-addon deleteBtn\">" +
+				"		<i class=\"fa fa-close\"></i>" +
+				"	</span>" +
+				"	<div class=\"col-md-3\">" +
+				"		<label>卷</label>" +
+				"		<select class=\"form-control bookSelector\" name=\"reading[]\">" +
+				"			<option value=\"\"></option>" +
+				<?php 
+				foreach (\Core\VerseTable::$table as $shortName => $details) {
+					echo '"				<option value=\"' . $details[2] . '\">' . $shortName . '-' . $details[0] . '</option>" +';
+				}
+				?>
+				"		</select>" +
+				"	</div>" +
+				"	<div class=\"col-md-3\">" +
+				"		<label>章</label>" +
+				"		<select class=\"form-control chapterSelector\" name=\"chapter[]\">" +
+				"		</select>" +
+				"	</div>" +
+				"	<div class=\"col-md-3\">" +
+				"		<label>開始</label>" +
+				"		<select class=\"form-control segmentStartSelector\" name=\"start[]\">" +
+				"		</select>" +
+				"	</div>" +
+				"	<div class=\"col-md-3\">" +
+				"		<label>結束</label>" +
+				"		<select class=\"form-control segmentEndSelector\" name=\"end[]\">" +
+				"		</select>" +
+				"	</div>" +
+				"</div>"
+			);
+		});
         $('.bookSelector').on('change', function() {
             var readingIdx = $(this).parents('.input-group').data('reading-index');
             var book = $(this).children("option:selected"). val();
