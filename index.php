@@ -118,8 +118,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             </div>
                         </div>
                         <div class="box-body" id="d">
-                            <div class="input-group input-group-sm" data-reading-index="123">
-                                <span class="input-group-addon">
+                            <div class="input-group input-group-sm rootGroup" data-reading-index="123">
+                                <span class="input-group-addon deleteBtn">
                                     <i class="fa fa-close"></i>
                                 </span>
                                 <div class="col-md-3">
@@ -302,6 +302,10 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 <script src="jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function() {
+        $('.deleteBtn').on('click', function() {
+            alert('test');
+            $(this).parents('.rootGroup').remove();
+        });
 //        $('#newMorningWorshipSongSelector').on('click', function() {
 //            $('#morningWorshipSongs').append("" +
 //                "<div class=\"input-group input-group-sm\">" +
@@ -323,8 +327,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
         $('.newWorshipSongSelector').on('click', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
-                "<div class=\"input-group input-group-sm\">" +
-                "   <span class=\"input-group-addon\">" +
+                "<div class=\"input-group input-group-sm rootGroup\">" +
+                "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
                 "   <select class=\"form-control\" name=\"worshipSongs[]\">" +
@@ -342,8 +346,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
         $('.newHymnSongSelector').on('click', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
-                "<div class=\"input-group input-group-sm\">" +
-                "   <span class=\"input-group-addon\">" +
+                "<div class=\"input-group input-group-sm rootGroup\">" +
+                "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
                 "   <select class=\"form-control\" name=\"worshipSongs[]\">" +

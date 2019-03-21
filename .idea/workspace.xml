@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc049ab1-6b25-45c3-84f5-ba632194941d" name="Default" comment="" />
+    <list default="true" id="fc049ab1-6b25-45c3-84f5-ba632194941d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="427" column="23" selection-start-line="427" selection-start-column="23" selection-end-line="427" selection-end-column="23" />
+            <state relative-caret-position="238">
+              <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
               <folding>
                 <element signature="e#14487#14627#0#PHP" expanded="true" />
               </folding>
@@ -101,9 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>　</find>
-      <find>04_打開天窗</find>
-      <find>OHP/</find>
       <find>OHP\</find>
       <find>\OHP\</find>
       <find>namespace OHP\</find>
@@ -127,10 +127,13 @@
       <find>:54</find>
       <find>123</find>
       <find>reading-index</find>
-      <find>newWorshipSongSelector</find>
       <find>chapterSelector</find>
       <find>verse</find>
       <find>segmentStartSelector</find>
+      <find>close</find>
+      <find>newWorshipSongSelector</find>
+      <find>deleteBtn</find>
+      <find>rootGroup</find>
     </findStrings>
     <replaceStrings>
       <replace>createText</replace>
@@ -154,6 +157,9 @@
     <dirStrings>
       <dir>D:\Dropbox\OHPGen</dir>
     </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -225,6 +231,7 @@
     <option name="width" value="1390" />
     <option name="height" value="1776" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -484,7 +491,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49667618" visible="true" weight="0.18123667" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49667618" visible="true" weight="0.18123667" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" />
       <window_info id="Designer" order="3" />
@@ -503,8 +510,8 @@
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5151351" side_tool="true" weight="0.19061303" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.48486486" visible="true" weight="0.32286024" />
-      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48486486" visible="true" weight="0.18851571" />
+      <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -821,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="427" column="23" selection-start-line="427" selection-start-column="23" selection-end-line="427" selection-end-column="23" />
+        <state relative-caret-position="238">
+          <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
           <folding>
             <element signature="e#14487#14627#0#PHP" expanded="true" />
           </folding>
