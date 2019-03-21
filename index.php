@@ -111,7 +111,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>D. 主日 - 讀經 (2)</h4>
+                                <h4>D. 主日 - 讀經</h4>
                                 <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="d">新增</button>
                                 </span>
@@ -127,7 +127,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>E. 主日 - 唱詩 (3)</h4>
+                                <h4>E. 主日 - 唱詩 (2)</h4>
                                 <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="e">新增</button>
                                 </span>
@@ -138,20 +138,39 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     </div>
                 </div>
             </div>
+			<div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>F. 主日 - 獻詩</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="song" name="f[song]" placeholder="詩歌">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="group" name="f[group]" placeholder="團契/牧區">
+                            </div>
+                        </div>
+                    </div>
+                </div>			
+			</div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>F. 主日 - 講道 (4)</h4>
+                                <h4>G. 主日 - 講道</h4>
                             </div>
                         </div>
                         <div class="box-body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="preachTitle" name="f[preachTitle]" placeholder="證道主題">
+                                <input type="text" class="form-control" id="title" name="g[title]" placeholder="證道主題">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="preacherName" name="f[preacherName]" placeholder="講道牧師">
+                                <input type="text" class="form-control" id="precher" name="g[preacher]" placeholder="講道牧師">
                             </div>
                             <div class="box box-primary">
                                 <div class="box-header with-border">
@@ -166,7 +185,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                                     <div class="box box-primary">
                                         <div class="box-header with-border">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" placeholder="大鋼">
+                                                <input type="text" class="form-control" name="g[outline][]" placeholder="大綱">
                                             </div>
                                             <div class="input-group input-group-sm">
                                                 <h6>讀經</h6>
@@ -189,7 +208,39 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>G. 報告</h4>
+                                <h4>H. 報告</h4>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat newReportBtn" data-target="report">新增</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="box-body" id="report">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>I. 代禱</h4>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat newIntercessionBtn" data-target="intercession">新增</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="box-body" id="intercession">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>J. 奉獻</h4>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat">新增</button>
                                 </span>
@@ -205,39 +256,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>H. 代禱</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>I. 奉獻</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>J. 金句</h4>
+                                <h4>K. 金句</h4>
                             </div>
                         </div>
                         <div class="box-body">
@@ -256,13 +275,13 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>K. 唱詩</h4>
+                                <h4>L. 唱詩 (3)</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" id="newHymnBtn" data-target="k">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat" id="newHymnBtn" data-target="l">新增</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="box-body" id="k">
+                        <div class="box-body" id="l">
                         </div>
                     </div>
                 </div>
@@ -273,10 +292,6 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 </body>
 <script src="assets/jquery-3.2.1.min.js"></script>
 <script>
-	$(document).on('click', '.deleteBtn', function() {
-		$(this).parents('.rootGroup').remove();
-	});
-
     $(document).ready(function() {
 //        $('#newMorningWorshipSongSelector').on('click', function() {
 //            $('#morningWorshipSongs').append("" +
@@ -296,7 +311,36 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 //                "   </select>" +
 //                "</div>");
 //        });
-        $('.newWorshipBtn').on('click', function() {
+		$(document).on('click', '.newReportBtn', function() {
+            var holder = $(this).data('target');
+            $('#' + holder).append("" +
+                "<div class=\"input-group input-group-sm rootGroup\">" +
+                "   <span class=\"input-group-addon deleteBtn\">" +
+                "       <i class=\"fa fa-close\"></i>" +
+                "   </span>" +
+				"   <input type=\"text\" class=\"form-control\" name=\"reports[]\" placeholder=\"\">" +
+				"</div>"
+			);
+		});
+
+		$(document).on('click', '.newIntercessionBtn', function() {
+            var holder = $(this).data('target');
+            $('#' + holder).append("" +
+                "<div class=\"input-group input-group-sm rootGroup\">" +
+                "   <span class=\"input-group-addon deleteBtn\">" +
+                "       <i class=\"fa fa-close\"></i>" +
+                "   </span>" +
+				"   <input type=\"text\" class=\"form-control\" name=\"intercessions[]\" placeholder=\"\">" +
+				"</div>"
+			);
+		});
+		
+		$(document).on('click', '.deleteBtn', function() {
+			$(this).parents('.rootGroup').remove();
+		});
+
+		//$('.newWorshipBtn').on('click', function() {
+		$(document).on('click', '.newWorshipBtn', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
@@ -315,7 +359,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
-        $('.newHymnBtn').on('click', function() {
+        //$('.newHymnBtn').on('click', function() {
+		$(document).on('click', '.newHymnBtn', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
@@ -334,7 +379,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
-		$('.newReadingBtn').on('click', function() {
+		//$('.newReadingBtn').on('click', function() {
+		$(document).on('click', '.newReadingBtn', function() {
             var holder = $(this).data('target');
             $('#' + holder).append("" +
 				"<div class=\"input-group input-group-sm rootGroup\" data-reading-index=\"123\">" +
@@ -370,7 +416,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 				"</div>"
 			);
 		});
-        $('.bookSelector').on('change', function() {
+        //$('.bookSelector').on('change', function() {
+		$(document).on('change', '.bookSelector', function() {
             var readingIdx = $(this).parents('.input-group').data('reading-index');
             var book = $(this).children("option:selected"). val();
             $.ajax({
@@ -384,7 +431,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 updateChapterSelector(readingIdx, data);
             });
         });
-        $('.chapterSelector').on('change', function() {
+        //$('.chapterSelector').on('change', function() {
+		$(document).on('change', '.chapterSelector', function() {
             var parentSelector = $(this).parents('.input-group');
             var readingIdx = parentSelector.data('reading-index');
             var book = parentSelector.find('.bookSelector').children("option:selected"). val();
