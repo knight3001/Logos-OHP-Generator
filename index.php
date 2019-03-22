@@ -80,71 +80,10 @@ function uuidv4()
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>早禱會</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="morningPrayer">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="morningPrayer">
-                            <input type="hidden" name="morningPrayer[type]" value="worship">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>敬拜讚美</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="worship">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="worship">
-                            <input type="hidden" name="worship[type]" value="worship">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>關手機</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="Opening[type]" value="opening">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>主日 - 唱詩 (1)</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn1">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="hymn1">
-                            <input type="hidden" name="hymn1[type]" value="hymn">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php printWorshipRow('早禱會', 'morningPrayer'); ?>
+            <?php printWorshipRow('敬拜讚美', 'worship'); ?>
+            <?php printSimpleRow('關手機', 'opening'); ?>
+            <?php printHymnRow('主日 - 唱詩 (1)', 'hymn1'); ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
@@ -162,37 +101,8 @@ function uuidv4()
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>主日 - 唱詩 (2)</h4>
-                                <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn2">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="hymn2">
-                            <input type="hidden" name="hymn2[type]" value="hymn">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>認信</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="apostlesCreed[type]" value="apostlesCreed">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php printHymnRow('主日 - 唱詩 (2)', 'hymn2'); ?>
+            <?php printSimpleRow('認信', 'apostlesCreed'); ?>
 			<div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
@@ -269,68 +179,10 @@ function uuidv4()
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>奉獻</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="tithing[type]" value="tithing">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>新朋友</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="visitor[type]" value="visitor">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>H. 報告</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newReportBtn" data-target="report">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="report">
-                            <input type="hidden" name="report[type]" value="report">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>I. 代禱</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newIntercessionBtn" data-target="intercession">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="intercession">
-                            <input type="hidden" name="intercession[type]" value="intercession">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php printSimpleRow('奉獻', 'tithing'); ?>
+            <?php printSimpleRow('新朋友', 'visitor'); ?>
+            <?php printReportRow('H. 報告', 'newReportBtn', 'report'); ?>
+            <?php printReportRow('I. 代禱', 'newIntercessionBtn', 'intercession'); ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
@@ -344,8 +196,8 @@ function uuidv4()
                             <div class="form-group">
                                 <input type="text" class="form-control" name="dedication[summary]" placeholder="奉獻統計">
                             </div>
+                            <?php for ($i = 0; $i < 4; $i++) { $id = uuidv4(); ?>
                             <div class="form-group">
-                                <?php $id = uuidv4(); ?>
                                 <div class="col-md-2">
                                     <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
                                 </div>
@@ -353,51 +205,7 @@ function uuidv4()
                                     <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <?php $id = uuidv4(); ?>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <?php $id = uuidv4(); ?>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <?php $id = uuidv4(); ?>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <?php $id = uuidv4(); ?>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <?php $id = uuidv4(); ?>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
-                                </div>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
-                                </div>
-                            </div>
+                            <? } ?>
                         </div>
                     </div>
                 </div>
@@ -422,51 +230,9 @@ function uuidv4()
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>L. 唱詩 (3)</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn3">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="hymn3">
-                            <input type="hidden" name="hymn3[type]" value="hymn">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>主禱文</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="lordsPrayer[type]" value="lordsPrayer">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>結束</h4>
-                            </div>
-                        </div>
-                        <div class="box-body">
-                            <input type="hidden" name="ending[type]" value="ending">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php printHymnRow('主日 - 唱詩 (3)', 'hymn3'); ?>
+            <?php printSimpleRow('主禱文', 'lordsPrayer'); ?>
+            <?php printSimpleRow('結束', 'ending'); ?>
             <div class="row">
                 <div class="col-md-3">
                     <span class="input-group-btn">
@@ -693,3 +459,89 @@ function uuidv4()
     });
 </script>
 </html>
+<?php
+
+function printSimpleRow($title, $target) {
+    echo '
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="input-group input-group-sm">
+                        <h4>' . $title . '</h4>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <input type="hidden" name="' . $target . '[type]" value="' . $target . '">
+                </div>
+            </div>
+        </div>
+    </div>
+    ';
+}
+
+function printHymnRow($title, $target) {
+    echo '
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="input-group input-group-sm">
+                        <h4>' . $title . '</h4>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="' . $target . '">新增</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="box-body" id="' . $target . '">
+                    <input type="hidden" name="' . $target . '[type]" value="hymn">
+                </div>
+            </div>
+        </div>
+    </div>
+    ';
+}
+
+function printWorshipRow($title, $target) {
+    echo '
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="input-group input-group-sm">
+                        <h4>' . $title . '</h4>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="' . $target . '">新增</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="box-body" id="' . $target . '">
+                    <input type="hidden" name="' . $target . '[type]" value="worship">
+                </div>
+            </div>
+        </div>
+    </div>
+    ';
+}
+
+function printReportRow($title, $btnClass, $target) {
+    echo '
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="input-group input-group-sm">
+                        <h4>' . $title . '</h4>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-info btn-flat ' . $btnClass . '" data-target="' . $target . '">新增</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="box-body" id="' . $target . '">
+                    <input type="hidden" name="' . $target . '[type]" value="' . $target . '">
+                </div>
+            </div>
+        </div>
+    </div>
+    ';
+}

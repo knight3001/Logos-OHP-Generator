@@ -49,9 +49,9 @@ foreach ($data as $section => $values) {
     } elseif ($values['type'] === 'weeklyVerse') {
         processWeeklyVerse($ppt, $values['collections']);
     } elseif ($values['type'] === 'report') {
-        (new Slides\Report($ppt, $values['collections']))->add();
+        if (isset($values['collections'])) (new Slides\Report($ppt, $values['collections']))->add();
     } elseif ($values['type'] === 'intercession') {
-        (new Slides\Intercession($ppt, $values['collections']))->add();
+        if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
     } elseif ($values['type'] === 'opening') {
         (new Slides\Opening($ppt))->add();
     } elseif ($values['type'] === 'apostlesCreed') {
@@ -77,20 +77,20 @@ unset($oWriterPPTX);
 header('location: /outputs/' . $fileName . '.pptx');
 
 function processWorship(&$ppt, $collections) {
-    foreach ($collections as $song) {
+    if (!empty($collections)) foreach ($collections as $song) {
         (new Slides\Worship($ppt, $song))->add();
     }
 }
 
 function processHymn(&$ppt, $collections) {
-    foreach ($collections as $song) {
+    if (!empty($collections)) foreach ($collections as $song) {
         (new Slides\Hymn($ppt, $song))->add();
     }
 }
 
 function processReading(&$ppt, $collections, $getObj = false) {
     $objs = array();
-    foreach ($collections as $readingDetails) {
+    if (!empty($collections)) foreach ($collections as $readingDetails) {
         $book = $readingDetails['book'];
         $chapter = $readingDetails['chapter'];
         $startSeg = $readingDetails['start'];
@@ -126,7 +126,7 @@ function processPreach(&$ppt, $collections) {
     $outlines = array();
     $preface = processReading($ppt, $collections['preface']['collections'], true);
     $conclusion = processReading($ppt, $collections['conclusion']['collections'], true);
-    foreach ($collections['outline'] as $outline) {
+    if (isset($collections['outline'])) foreach ($collections['outline'] as $outline) {
         $outlineTitle = $outline['title'];
         $outlineReadings = $outline['collections'];
         $outlines[$outlineTitle] = processReading($ppt, $outlineReadings, true);
