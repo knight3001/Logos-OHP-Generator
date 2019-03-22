@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc049ab1-6b25-45c3-84f5-ba632194941d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/bibleRetriever.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OHPGen/Core/Slides/Hymn.php" beforeDir="false" afterPath="$PROJECT_DIR$/OHPGen/Core/Slides/Hymn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OHPGen/Core/Slides/Tithing.php" beforeDir="false" afterPath="$PROJECT_DIR$/OHPGen/Core/Slides/Tithing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php" beforeDir="false" afterPath="$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookInfoRetriever.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,39 +33,56 @@
     <favorites_list name="OHPGen" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/confs/2019-02-17.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="110" selection-start-line="1" selection-start-column="110" selection-end-line="1" selection-end-column="110" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/generate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="266">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
-              <folding>
-                <element signature="e#14487#14627#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="465">
+              <caret line="478" column="83" lean-forward="true" selection-start-line="478" selection-start-column="83" selection-end-line="478" selection-end-column="83" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bookInfoRetriever.php">
+        <entry file="file://$PROJECT_DIR$/OHPGen/footer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="7" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Corinthians-NIV.txt">
+        <entry file="file://$PROJECT_DIR$/bibleRetriever.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-214" />
+            <state relative-caret-position="270">
+              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Chronicles-NIV.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="795">
               <caret line="53" column="4" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="4" />
             </state>
           </provider>
@@ -69,8 +91,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/confs/2018-07-29.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+            <state relative-caret-position="1301">
+              <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/confs/2018-11-11_westend.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -78,17 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/OHPGen/Core/VerseTable.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" column="44" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="44" />
+            <state relative-caret-position="86">
+              <caret line="56" selection-start-line="56" selection-end-line="56" />
             </state>
           </provider>
         </entry>
@@ -104,36 +126,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>OHP\</find>
-      <find>\OHP\</find>
-      <find>namespace OHP\</find>
-      <find>use 　\Core\Slides;</find>
-      <find>OHP</find>
-      <find>extension_dir</find>
-      <find>openssl</find>
-      <find>require __DIR__ . DIRECTORY_SEPARATOR . 'header.php';</find>
-      <find>require __DIR__ . DIRECTORY_SEPARATOR . 'footer.php';</find>
-      <find>require __DIR__ . '..' . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR . 'header.php';</find>
-      <find>require __DIR__ . '..' . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR . 'footer.php';</find>
-      <find>../../bower_components</find>
-      <find>side</find>
-      <find>newReadingSelector</find>
-      <find>input-group input-group-sm</find>
-      <find>讀經</find>
-      <find>::$table</find>
-      <find>VerseTable</find>
-      <find>readingSe</find>
-      <find>reading</find>
-      <find>:54</find>
-      <find>123</find>
-      <find>reading-index</find>
-      <find>chapterSelector</find>
-      <find>verse</find>
-      <find>segmentStartSelector</find>
-      <find>close</find>
-      <find>newWorshipSongSelector</find>
-      <find>deleteBtn</find>
+      <find>jqueryui</find>
+      <find>readingIdx</find>
       <find>rootGroup</find>
+      <find>reading-index</find>
+      <find>updateSegmentSelector</find>
+      <find>$(document).on('change', '.chapterSelector', function() {</find>
+      <find>book</find>
+      <find>[collection]</find>
+      <find>L. 唱詩 (3)</find>
+      <find>newHymnBtn</find>
+      <find>newReading</find>
+      <find>hidden</find>
+      <find>hidde</find>
+      <find>outline</find>
+      <find>newOutlineBtn</find>
+      <find>table</find>
+      <find>groupWor</find>
+      <find>j[collections]</find>
+      <find>&quot;i&quot;</find>
+      <find>敬拜讚美</find>
+      <find>newReadingBtn</find>
+      <find>data-id</find>
+      <find>g[</find>
+      <find>preface</find>
+      <find>processDedication</find>
+      <find>songFile</find>
+      <find>386</find>
+      <find>386,</find>
+      <find>processReading</find>
+      <find>var_d</find>
     </findStrings>
     <replaceStrings>
       <replace>createText</replace>
@@ -153,6 +175,9 @@
       <replace>require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR . 'header.php';</replace>
       <replace>require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR . 'footer.php';</replace>
       <replace>bower_components</replace>
+      <replace>$_GET</replace>
+      <replace>[collections]</replace>
+      <replace>dedication[collections]</replace>
     </replaceStrings>
     <dirStrings>
       <dir>D:\Dropbox\OHPGen</dir>
@@ -164,10 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/OHP/Assets/worship/06_專心仰望耶穌.ini" />
-        <option value="$PROJECT_DIR$/OHP/Assets/worship/05_行神蹟的神.ini" />
-        <option value="$PROJECT_DIR$/2018-12-16.php" />
-        <option value="$PROJECT_DIR$/OHP/Assets/hymns/445_蒙主呼召.ini" />
         <option value="$PROJECT_DIR$/OHP/Assets/hymns/442_到各山嶺去傳揚.ini" />
         <option value="$PROJECT_DIR$/OHP/Assets/hymns/341_愛傳福音.ini" />
         <option value="$PROJECT_DIR$/OHP/Assets/worship/04_我們呼求.ini" />
@@ -212,9 +233,13 @@
         <option value="$PROJECT_DIR$/confs/2017-07-09.php" />
         <option value="$PROJECT_DIR$/OHPGen/footer.php" />
         <option value="$PROJECT_DIR$/OHPGen/VerseTable.php" />
-        <option value="$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php" />
         <option value="$PROJECT_DIR$/bookInfoRetriever.php" />
+        <option value="$PROJECT_DIR$/bibleRetriever.php" />
+        <option value="$PROJECT_DIR$/OHPGen/Core/Slides/Hymn.php" />
+        <option value="$PROJECT_DIR$/OHPGen/Core/Slides/Tithing.php" />
+        <option value="$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/generate.php" />
       </list>
     </option>
   </component>
@@ -227,9 +252,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="width" value="1390" />
-    <option name="height" value="1776" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -237,6 +263,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,28 +274,12 @@
             <path>
               <item name="OHPGen" type="b2602c69:ProjectViewProjectNode" />
               <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
+              <item name="confs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OHPGen" type="b2602c69:ProjectViewProjectNode" />
               <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
               <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OHPGen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
-              <item name="Assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OHPGen" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="OHPGen" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
-              <item name="Assets" type="462c0819:PsiDirectoryNode" />
-              <item name="books" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OHPGen" type="b2602c69:ProjectViewProjectNode" />
@@ -279,7 +290,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
@@ -294,19 +304,19 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\projects\OHPGen\OHPGen\Core" />
-      <recent name="C:\projects\OHPGen\templates" />
-      <recent name="C:\projects\OHPGen" />
-      <recent name="C:\projects\OHPGen\" />
-      <recent name="C:\projects\OHPGen\OHPGen" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Rick Lan\Dropbox\projects\OHPGen\OHP\Assets\worship" />
       <recent name="C:\Users\Rick Lan\Dropbox\projects\OHPGen" />
       <recent name="C:\Users\rickl\Dropbox\projects\OHPGen\OHP\Assets\hymns" />
       <recent name="C:\Users\rickl\Dropbox\projects\OHPGen\OHP\Assets\worship" />
       <recent name="C:\Users\rickl\Dropbox\projects\OHPGen" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\projects\OHPGen\OHPGen\Core" />
+      <recent name="C:\projects\OHPGen\templates" />
+      <recent name="C:\projects\OHPGen" />
+      <recent name="C:\projects\OHPGen\" />
+      <recent name="C:\projects\OHPGen\OHPGen" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -491,7 +501,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49667618" visible="true" weight="0.18123667" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49667618" visible="true" weight="0.18923241" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="DB Browser" order="2" />
       <window_info id="Designer" order="3" />
@@ -505,12 +515,12 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="DB Execution Console" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5151351" side_tool="true" weight="0.19061303" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48486486" visible="true" weight="0.18851571" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.48486486" visible="true" weight="0.18851571" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -561,12 +571,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2019-03-21_thur_worship.php" />
-    <entry file="file://$PROJECT_DIR$/OHP/Assets/worship/04_馨香晚祭.ini" />
-    <entry file="file://$PROJECT_DIR$/footer.php" />
-    <entry file="file://$PROJECT_DIR$/semantic.json" />
-    <entry file="file://$PROJECT_DIR$/template.php" />
-    <entry file="file://$PROJECT_DIR$/WordExtractor.php" />
     <entry file="file://$PROJECT_DIR$/OHPGen.iml" />
     <entry file="file://$PROJECT_DIR$/OHP/Assets/hymns/075_寶血大權能.ini" />
     <entry file="file://$PROJECT_DIR$/header.php" />
@@ -611,11 +615,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Ending.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/GroupWorship.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-143" />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Intercession.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -663,16 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Worship.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#120#164#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OHPGen/vendor/composer/ClassLoader.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1260" />
@@ -699,13 +688,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/php.ini_">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="940" column="18" selection-start-line="939" selection-start-column="15" selection-end-line="940" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/php.ini_" />
     <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/worship/07_主祢是我的盼望.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -716,10 +699,25 @@
     <entry file="file://$PROJECT_DIR$/outputs/DO_NOT_DELETE_THIS_FILE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/footer.php">
+    <entry file="file://$PROJECT_DIR$/confs/2018-12-23_westend.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        <state relative-caret-position="-592" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/LordsPrayer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Corinthians-NIV.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-214" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/Genesis-NIV.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="1532" column="118" lean-forward="true" selection-start-line="1532" selection-start-column="118" selection-end-line="1532" selection-end-column="118" />
         </state>
       </provider>
     </entry>
@@ -730,18 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/confs/2017-07-09.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/confs/2018-12-23_westend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-592" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/confs/2017-07-29.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -749,40 +735,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/header.php">
+    <entry file="file://$PROJECT_DIR$/confs/2017-07-09.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="-371">
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/hymns/386_將最好獻主.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/GroupWorship.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="34" column="35" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Chronicles-NIV.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="795">
+          <caret line="53" column="4" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Worship.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="35" column="34" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+          <folding>
+            <element signature="e#120#164#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Hymn.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#119#163#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="336">
+          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/LordsPrayer.php">
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Tithing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-247" />
+        <state relative-caret-position="510">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Base.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-773">
+        <state relative-caret-position="241">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
           <folding>
             <element signature="e#119#163#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -793,46 +811,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/confs/2018-07-29.php">
+    <entry file="file://$PROJECT_DIR$/bibleRetriever.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Corinthians-NIV.txt">
+    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Slides/Verse.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-214" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/1 Chronicles-NIV.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="53" column="4" selection-start-line="53" selection-start-column="1" selection-end-line="53" selection-end-column="4" />
+        <state relative-caret-position="86">
+          <caret line="56" selection-start-line="56" selection-end-line="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookInfoRetriever.php">
+    <entry file="file://$PROJECT_DIR$/confs/2019-02-17.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="48" column="7" selection-start-line="48" selection-start-column="7" selection-end-line="48" selection-end-column="7" />
+        <state relative-caret-position="15">
+          <caret line="1" column="110" selection-start-line="1" selection-start-column="110" selection-end-line="1" selection-end-column="110" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OHPGen/Core/Assets/books/Genesis-NIV.txt">
+    <entry file="file://$PROJECT_DIR$/OHPGen/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="1532" column="118" lean-forward="true" selection-start-line="1532" selection-start-column="118" selection-end-line="1532" selection-end-column="118" />
+        <state relative-caret-position="240">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/dist/js/adminlte.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="306" column="39" selection-start-line="306" selection-start-column="39" selection-end-line="306" selection-end-column="39" />
-          <folding>
-            <element signature="e#14487#14627#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="465">
+          <caret line="478" column="83" lean-forward="true" selection-start-line="478" selection-start-column="83" selection-end-line="478" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/confs/2018-07-29.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1301">
+          <caret line="93" column="33" selection-start-line="93" selection-start-column="33" selection-end-line="93" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/confs/2018-11-11_westend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
         </state>
       </provider>
     </entry>

@@ -35,15 +35,14 @@ class Hymn extends Main
     public function __construct(&$ppt, $songNo, $noOpening = false)
     {
         $songNo = str_pad($songNo, 3, '0', STR_PAD_LEFT);
-        $result = glob(HYMN_DIR . "/{$songNo}_*.ini");
-        if ($result) {
-            $this->songFile = $result[0];
+        $file = HYMN_DIR . DIRECTORY_SEPARATOR . $songNo;
+        if (file_exists($file)) {
+            $this->songFile =$file;
             $this->noOpening = $noOpening;
             $this->loadContents();
             Main::__construct($ppt);
         } else {
             throw new \Exception($songNo . ' is not found.');
-//            trigger_error('Unable to find Hymn ' . $songNo . ' (' . HYMN_DIR . "/{$songNo}_*.ini" . ')', E_USER_WARNING);
         }
     }
     protected function loadContents(): void

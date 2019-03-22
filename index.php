@@ -1,6 +1,28 @@
 <?php
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+function uuidv4()
+{
+    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        // 32 bits for "time_low"
+        random_int( 0, 0xffff ), random_int( 0, 0xffff ),
+
+        // 16 bits for "time_mid"
+        random_int( 0, 0xffff ),
+
+        // 16 bits for "time_hi_and_version",
+        // four most significant bits holds version number 4
+        random_int( 0, 0x0fff ) | 0x4000,
+
+        // 16 bits, 8 bits for "clk_seq_hi_res",
+        // 8 bits for "clk_seq_low",
+        // two most significant bits holds zero and one for variant DCE1.1
+        random_int( 0, 0x3fff ) | 0x8000,
+
+        // 48 bits for "node"
+        random_int( 0, 0xffff ), random_int( 0, 0xffff ), random_int( 0, 0xffff )
+    );
+}
 ?>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -41,19 +63,67 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
         </h1>
     </section>
     <section class="content">
-        <form role="form" id="ohpContainer" class="ohpContainer">
+        <form role="form" id="ohpContainer" class="ohpContainer" target="_blank" action="/generate.php" method="post">
+<!--            <div class="row">-->
+<!--                <div class="col-md-12">-->
+<!--                    <div class="box box-primary">-->
+<!--                        <div class="box-header with-border">-->
+<!--                            <div class="input-group input-group-sm">-->
+<!--                                <select></select>-->
+<!--                                <span class="input-group-btn">-->
+<!--                                    <button type="button" class="btn btn-info btn-flat">存檔</button>-->
+<!--                                </span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="box-body">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <select></select>
+                                <h4>早禱會</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat">存檔</button>
+                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="morningPrayer">新增</button>
                                 </span>
+                            </div>
+                        </div>
+                        <div class="box-body" id="morningPrayer">
+                            <input type="hidden" name="morningPrayer[type]" value="worship">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>敬拜讚美</h4>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="worship">新增</button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="box-body" id="worship">
+                            <input type="hidden" name="worship[type]" value="worship">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>關手機</h4>
                             </div>
                         </div>
                         <div class="box-body">
+                            <input type="hidden" name="Opening[type]" value="opening">
                         </div>
                     </div>
                 </div>
@@ -63,13 +133,14 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>A. 早禱會</h4>
+                                <h4>主日 - 唱詩 (1)</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="a">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn1">新增</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="box-body" id="a">
+                        <div class="box-body" id="hymn1">
+                            <input type="hidden" name="hymn1[type]" value="hymn">
                         </div>
                     </div>
                 </div>
@@ -79,45 +150,14 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>B. 敬拜讚美</h4>
+                                <h4>主日 - 讀經</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newWorshipBtn" data-target="b">新增</button>
+                                <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="reading">新增</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="box-body" id="b">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>C. 主日 - 唱詩 (1)</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="c">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="c">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <div class="input-group input-group-sm">
-                                <h4>D. 主日 - 讀經</h4>
-                                <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="d">新增</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="box-body" id="d">
+                        <div class="box-body" id="reading">
+                            <input type="hidden" name="reading[type]" value="reading">
 						</div>
                     </div>
                 </div>
@@ -127,13 +167,28 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>E. 主日 - 唱詩 (2)</h4>
+                                <h4>主日 - 唱詩 (2)</h4>
                                 <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="e">新增</button>
+                                <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn2">新增</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="box-body" id="e">
+                        <div class="box-body" id="hymn2">
+                            <input type="hidden" name="hymn2[type]" value="hymn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>認信</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <input type="hidden" name="apostlesCreed[type]" value="apostlesCreed">
                         </div>
                     </div>
                 </div>
@@ -143,15 +198,16 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>F. 主日 - 獻詩</h4>
+                                <h4>主日 - 獻詩</h4>
                             </div>
                         </div>
                         <div class="box-body">
+                            <input type="hidden" name="groupWorship[type]" value="groupWorship">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="song" name="f[song]" placeholder="詩歌">
+                                <input type="text" class="form-control" id="song" name="groupWorship[collections][song]" placeholder="詩歌">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="group" name="f[group]" placeholder="團契/牧區">
+                                <input type="text" class="form-control" id="group" name="groupWorship[collections][group]" placeholder="團契/牧區">
                             </div>
                         </div>
                     </div>
@@ -162,43 +218,81 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>G. 主日 - 講道</h4>
+                                <h4>主日 - 講道</h4>
                             </div>
                         </div>
                         <div class="box-body">
+                            <input type="hidden" name="preach[type]" value="preach">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" name="g[title]" placeholder="證道主題">
+                                <input type="text" class="form-control" id="title" name="preach[title]" placeholder="證道主題">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="precher" name="g[preacher]" placeholder="講道牧師">
+                                <input type="text" class="form-control" id="preacher" name="preach[preacher]" placeholder="講道牧師">
+                            </div>
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <div class="input-group input-group-sm">
+                                        <h5>序言</h5>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="preface">新增</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="box-body" id="preface" data-id="preach[preface]">
+                                </div>
                             </div>
                             <div class="box box-primary">
                                 <div class="box-header with-border">
                                     <div class="input-group input-group-sm">
                                         <h5>證道大鋼</h5>
                                         <span class="input-group-btn">
-                                            <button type="button" class="btn btn-info btn-flat newPreachOutlineSelector">新增</button>
+                                            <button type="button" class="btn btn-info btn-flat newOutlineBtn" data-target="outlines">新增</button>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="box-body">
-                                    <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" name="g[outline][]" placeholder="大綱">
-                                            </div>
-                                            <div class="input-group input-group-sm">
-                                                <h6>讀經</h6>
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="btn btn-info btn-flat">新增</button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="box-body">
-                                        </div>
-                                    </div>
+                                <div class="box-body" id="outlines">
                                 </div>
                             </div>
+                            <div class="box box-primary">
+                                <div class="box-header with-border">
+                                    <div class="input-group input-group-sm">
+                                        <h5>結論</h5>
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="conclusion">新增</button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="box-body" id="conclusion" data-id="preach[conclusion]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>奉獻</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <input type="hidden" name="tithing[type]" value="tithing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>新朋友</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <input type="hidden" name="visitor[type]" value="visitor">
                         </div>
                     </div>
                 </div>
@@ -215,6 +309,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             </div>
                         </div>
                         <div class="box-body" id="report">
+                            <input type="hidden" name="report[type]" value="report">
                         </div>
                     </div>
                 </div>
@@ -231,6 +326,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             </div>
                         </div>
                         <div class="box-body" id="intercession">
+                            <input type="hidden" name="intercession[type]" value="intercession">
                         </div>
                     </div>
                 </div>
@@ -240,13 +336,68 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>J. 奉獻</h4>
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat">新增</button>
-                                </span>
+                                <h4>J. 上周奉獻</h4>
                             </div>
                         </div>
                         <div class="box-body">
+                            <input type="hidden" name="dedication[type]" value="dedication">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="dedication[summary]" placeholder="奉獻統計">
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php $id = uuidv4(); ?>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][type]" placeholder="類別">
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -260,11 +411,12 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             </div>
                         </div>
                         <div class="box-body">
+                            <input type="hidden" name="weeklyVerse[type]" value="weeklyVerse">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="weeklyVerse" placeholder="經文">
+                                <input type="text" class="form-control" name="weeklyVerse[collections][verse]" placeholder="經文">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" id="weeklyVerseBook" placeholder="經文出處">
+                                <input type="text" class="form-control" name="weeklyVerse[collections][chapter]" placeholder="經文出處">
                             </div>
                         </div>
                     </div>
@@ -277,13 +429,56 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                             <div class="input-group input-group-sm">
                                 <h4>L. 唱詩 (3)</h4>
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" id="newHymnBtn" data-target="l">新增</button>
+                                    <button type="button" class="btn btn-info btn-flat newHymnBtn" data-target="hymn3">新增</button>
                                 </span>
                             </div>
                         </div>
-                        <div class="box-body" id="l">
+                        <div class="box-body" id="hymn3">
+                            <input type="hidden" name="hymn3[type]" value="hymn">
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>主禱文</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <input type="hidden" name="lordsPrayer[type]" value="lordsPrayer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <div class="input-group input-group-sm">
+                                <h4>結束</h4>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <input type="hidden" name="ending[type]" value="ending">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="input-group-btn">
+                        <input type="submit" class="btn btn-info btn-flat" value="OHP!">
+                    </span>
+                </div>
+                <div class="col-md-3">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="useLogo" value="1">使用 Logo
+                        </label>
+                    </span>
                 </div>
             </div>
         </form>
@@ -293,61 +488,46 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 <script src="assets/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function() {
-//        $('#newMorningWorshipSongSelector').on('click', function() {
-//            $('#morningWorshipSongs').append("" +
-//                "<div class=\"input-group input-group-sm\">" +
-//                "   <span class=\"input-group-addon\">" +
-//                "       <i class=\"fa fa-close\"></i>" +
-//                "   </span>" +
-//                "   <select class=\"form-control\" name=\"morningWorshipSongs[]\">" +
-//                <?php
-//                $files = scandir('.' . DIRECTORY_SEPARATOR . 'OHP' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'worship', 0);
-//                foreach ($files as $filename) {
-//                    if ($filename !== '.' && $filename !== '..') {
-//                        echo '"       <option value=\"' . $filename . '\">' . $filename . '</option>" +';
-//                    }
-//                }
-//                ?>
-//                "   </select>" +
-//                "</div>");
-//        });
 		$(document).on('click', '.newReportBtn', function() {
+            var id = uuidv4();
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
                 "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
-				"   <input type=\"text\" class=\"form-control\" name=\"reports[]\" placeholder=\"\">" +
+				"   <input type=\"text\" class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\" placeholder=\"\">" +
 				"</div>"
 			);
 		});
 
 		$(document).on('click', '.newIntercessionBtn', function() {
+            var id = uuidv4();
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
                 "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
-				"   <input type=\"text\" class=\"form-control\" name=\"intercessions[]\" placeholder=\"\">" +
+				"   <input type=\"text\" class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\" placeholder=\"\">" +
 				"</div>"
 			);
 		});
-		
+
 		$(document).on('click', '.deleteBtn', function() {
 			$(this).parents('.rootGroup').remove();
 		});
 
-		//$('.newWorshipBtn').on('click', function() {
 		$(document).on('click', '.newWorshipBtn', function() {
+            var id = uuidv4();
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
                 "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
-                "   <select class=\"form-control\" name=\"worshipSongs[]\">" +
+                "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                "			<option value=\"\"></option>" +
                 <?php
                 $files = scandir($OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'worship', 0);
                 foreach ($files as $filename) {
@@ -359,15 +539,17 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
-        //$('.newHymnBtn').on('click', function() {
+
 		$(document).on('click', '.newHymnBtn', function() {
+            var id = uuidv4();
             var holder = $(this).data('target');
             $('#' + holder).append("" +
                 "<div class=\"input-group input-group-sm rootGroup\">" +
                 "   <span class=\"input-group-addon deleteBtn\">" +
                 "       <i class=\"fa fa-close\"></i>" +
                 "   </span>" +
-                "   <select class=\"form-control\" name=\"worshipSongs[]\">" +
+                "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                "			<option value=\"\"></option>" +
                 <?php
                 $files = scandir($OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'hymns', 0);
                 foreach ($files as $filename) {
@@ -379,19 +561,24 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                 "   </select>" +
                 "</div>");
         });
-		//$('.newReadingBtn').on('click', function() {
+
 		$(document).on('click', '.newReadingBtn', function() {
+		    var id = uuidv4();
             var holder = $(this).data('target');
+            var nameVal = $('#' + holder).data('id');
+            if (nameVal == undefined) {
+                nameVal = holder;
+            }
             $('#' + holder).append("" +
-				"<div class=\"input-group input-group-sm rootGroup\" data-reading-index=\"123\">" +
+				"<div class=\"input-group input-group-sm rootGroup\">" +
 				"	<span class=\"input-group-addon deleteBtn\">" +
 				"		<i class=\"fa fa-close\"></i>" +
 				"	</span>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>卷</label>" +
-				"		<select class=\"form-control bookSelector\" name=\"reading[]\">" +
+				"		<select class=\"form-control bookSelector\" name=\"" + nameVal + "[collections]["+id+"][book]\">" +
 				"			<option value=\"\"></option>" +
-				<?php 
+				<?php
 				foreach (\Core\VerseTable::$table as $shortName => $details) {
 					echo '"				<option value=\"' . $details[2] . '\">' . $shortName . '-' . $details[0] . '</option>" +';
 				}
@@ -400,89 +587,98 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>章</label>" +
-				"		<select class=\"form-control chapterSelector\" name=\"chapter[]\">" +
+				"		<select class=\"form-control chapterSelector\" name=\""+nameVal+"[collections]["+id+"][chapter]\">" +
 				"		</select>" +
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>開始</label>" +
-				"		<select class=\"form-control segmentStartSelector\" name=\"start[]\">" +
+				"		<select class=\"form-control segmentStartSelector\" name=\""+nameVal+"[collections]["+id+"][start]\">" +
 				"		</select>" +
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>結束</label>" +
-				"		<select class=\"form-control segmentEndSelector\" name=\"end[]\">" +
+				"		<select class=\"form-control segmentEndSelector\" name=\""+nameVal+"[collections]["+id+"][end]\">" +
 				"		</select>" +
 				"	</div>" +
 				"</div>"
 			);
 		});
-        //$('.bookSelector').on('change', function() {
+
+		$(document).on('click', '.newOutlineBtn', function() {
+		    var id = uuidv4();
+		    var outlineId = uuidv4();
+            var holder = $(this).data('target');
+            $('#' + holder).append("" +
+                "<div class=\"box box-primary\">" +
+                "<div class=\"box-header with-border\">" +
+                "<div class=\"form-group\">" +
+                "<input type=\"text\" class=\"form-control\" name=\"preach[outline]["+id+"][title]\" placeholder=\"大綱\">" +
+                "</div>" +
+                "<div class=\"input-group input-group-sm\">" +
+                "<h6>讀經</h6>" +
+                "<span class=\"input-group-btn\">" +
+                "<button type=\"button\" class=\"btn btn-info btn-flat newReadingBtn\" data-target=\""+outlineId+"\">新增</button>" +
+                "</span>" +
+                "</div>" +
+                "</div>" +
+                "<div class=\"box-body\" id=\""+outlineId+"\" data-id=\"preach[outline]["+id+"]\">" +
+                "</div>" +
+                "</div>"
+            );
+        });
+
 		$(document).on('change', '.bookSelector', function() {
-            var readingIdx = $(this).parents('.input-group').data('reading-index');
+            var rootGroup = $(this).parents('.rootGroup');
             var book = $(this).children("option:selected"). val();
             $.ajax({
-                url: '/bookInfoRetriever.php',
-                type: 'POST',
+                url: '/bibleRetriever.php',
+                type: 'get',
                 dataType: "json",
                 data: {
                     book: book
                 }
             }).done(function(data) {
-                updateChapterSelector(readingIdx, data);
+                updateChapterSelector(rootGroup, data);
             });
         });
-        //$('.chapterSelector').on('change', function() {
+
 		$(document).on('change', '.chapterSelector', function() {
-            var parentSelector = $(this).parents('.input-group');
-            var readingIdx = parentSelector.data('reading-index');
-            var book = parentSelector.find('.bookSelector').children("option:selected"). val();
+		    var rootGroup = $(this).parents('.rootGroup');
+            var book = rootGroup.find('.bookSelector').children("option:selected"). val();
             var chapter = $(this).children("option:selected"). val();
             // var book = $(this).children("option:selected"). val();
             $.ajax({
-                url: '/bookInfoRetriever.php',
-                type: 'POST',
+                url: '/bibleRetriever.php',
+                type: 'get',
                 dataType: "json",
                 data: {
                     book: book,
                     chapter: chapter
                 }
             }).done(function(data) {
-                updateSegmentSelector(readingIdx, data);
+                updateSegmentSelector(rootGroup, data);
             });
         });
-        //$('.newReadingSelector').on('click', function() {
-        //    var holder = $(this).data('target');
-        //    $('#' + holder).append("" +
-        //        "<div class=\"input-group input-group-sm\">" +
-        //        "   <span class=\"input-group-addon\">" +
-        //        "       <i class=\"fa fa-close\"></i>" +
-        //        "   </span>" +
-        //        "   <select class=\"form-control\" name=\"worshipSongs[]\">" +
-        //        <?php
-        //        $files = scandir($OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'hymns', 0);
-        //        foreach ($files as $filename) {
-        //            if ($filename !== '.' && $filename !== '..') {
-        //                echo '"       <option value=\"' . $filename . '\">' . $filename . '</option>" +';
-        //            }
-        //        }
-        //        ?>
-        //        "   </select>" +
-        //        "</div>");
-        //});
-        function updateChapterSelector(readingIdx, list) {
-            var selector = $("div").find("[data-reading-index='" + readingIdx + "']").find('.chapterSelector');
+
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function updateChapterSelector(rootGroup, list) {
+            var selector = rootGroup.find('.chapterSelector');
             selector.find("option").remove();
-            // var selector = $("div[reading-index='" + readingIdx + "']").find('.chapterSelector');
             selector.append('<option value=""></value>');
             $.each(list, function(key, value) {
                 selector.append('<option value="' + value + '">' + value + ' 章</value>');
             });
         }
 
-        function updateSegmentSelector(readingIdx, list) {
-            var parentSelector = $("div").find("[data-reading-index='" + readingIdx + "']");
-            var startSelector = parentSelector.find('.segmentStartSelector');
-            var endSelector = parentSelector.find('.segmentEndSelector');
+        function updateSegmentSelector(rootGroup, list) {
+            var startSelector = rootGroup.find('.segmentStartSelector');
+            var endSelector = rootGroup.find('.segmentEndSelector');
 
             startSelector.find("option").remove();
             endSelector.find("option").remove();

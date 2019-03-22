@@ -31,6 +31,23 @@ class Verse extends Main
         parent::__construct($ppt);
     }
 
+    public static function LoadByBookName(&$ppt, $bookName, $chapter, $start, $end = null)
+    {
+        $book = null;
+        if (trim($end) === '') {
+            $end = null;
+        }
+        foreach (VerseTable::$table as $shortName => $details) {
+            if ($details[2] === $bookName) {
+                $book = $shortName;
+            }
+        }
+        if ($book === null) {
+            return null;
+        }
+        return new static($ppt, $book, $chapter, $start, $end);
+    }
+
     protected function loadContents(): void
     {
         $idxEnContents = array();
