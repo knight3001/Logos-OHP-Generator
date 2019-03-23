@@ -285,47 +285,55 @@ function uuidv4()
 		});
 
 		$(document).on('click', '.newWorshipBtn', function() {
-            var id = uuidv4();
-            var holder = $(this).data('target');
-            $('#' + holder).append("" +
-                "<div class=\"input-group input-group-sm rootGroup\">" +
-                "   <span class=\"input-group-addon deleteBtn\">" +
-                "       <i class=\"fa fa-close\"></i>" +
-                "   </span>" +
-                "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
-                "			<option value=\"\"></option>" +
-                <?php
-                $files = scandir($OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'worship', 0);
-                foreach ($files as $filename) {
-                    if ($filename !== '.' && $filename !== '..') {
-                        echo '"       <option value=\"' . $filename . '\">' . $filename . '</option>" +';
-                    }
-                }
-                ?>
-                "   </select>" +
-                "</div>");
+            var btnSelector = $(this);
+            $.ajax({
+                url: '/worshipListRetriever.php',
+                type: 'get',
+                dataType: "json"
+            }).done(function(data) {
+                var id = uuidv4();
+                var holder = btnSelector.data('target');
+                var html = "" +
+                    "<div class=\"input-group input-group-sm rootGroup\">" +
+                    "   <span class=\"input-group-addon deleteBtn\">" +
+                    "       <i class=\"fa fa-close\"></i>" +
+                    "   </span>" +
+                    "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                    "			<option value=\"\"></option>";
+                $.each(data, function(key, value) {
+                    html += '<option value="' + value + '">' + value + '</value>';
+                });
+                html +=
+                    "   </select>" +
+                    "</div>";
+                $('#' + holder).append(html);
+            });
         });
 
 		$(document).on('click', '.newHymnBtn', function() {
-            var id = uuidv4();
-            var holder = $(this).data('target');
-            $('#' + holder).append("" +
-                "<div class=\"input-group input-group-sm rootGroup\">" +
-                "   <span class=\"input-group-addon deleteBtn\">" +
-                "       <i class=\"fa fa-close\"></i>" +
-                "   </span>" +
-                "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
-                "			<option value=\"\"></option>" +
-                <?php
-                $files = scandir($OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'hymns', 0);
-                foreach ($files as $filename) {
-                    if ($filename !== '.' && $filename !== '..') {
-                        echo '"       <option value=\"' . $filename . '\">' . $filename . '</option>" +';
-                    }
-                }
-                ?>
-                "   </select>" +
-                "</div>");
+		    var btnSelector = $(this);
+            $.ajax({
+                url: '/hymnListRetriever.php',
+                type: 'get',
+                dataType: "json"
+            }).done(function(data) {
+                var id = uuidv4();
+                var holder = btnSelector.data('target');
+                var html = "" +
+                    "<div class=\"input-group input-group-sm rootGroup\">" +
+                    "   <span class=\"input-group-addon deleteBtn\">" +
+                    "       <i class=\"fa fa-close\"></i>" +
+                    "   </span>" +
+                    "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                    "			<option value=\"\"></option>";
+                $.each(data, function(key, value) {
+                    html += '<option value="' + value + '">' + value + '</value>';
+                });
+                html +=
+                    "   </select>" +
+                    "</div>";
+                $('#' + holder).append(html);
+            });
         });
 
 		$(document).on('click', '.newReadingBtn', function() {
@@ -452,8 +460,8 @@ function uuidv4()
             startSelector.append('<option value=""></value>');
             endSelector.append('<option value=""></value>');
             $.each(list, function(key, value) {
-                startSelector.append('<option value="' + value + '">第 ' + value + ' 節</value>');
-                endSelector.append('<option value="' + value + '">第 ' + value + ' 節</value>');
+                startSelector.append('<option value="' + value + '">' + value + ' 節</value>');
+                endSelector.append('<option value="' + value + '">' + value + ' 節</value>');
             });
         }
     });

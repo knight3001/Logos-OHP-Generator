@@ -50,7 +50,7 @@ if (!empty($data)) foreach ($data as $section => $values) {
 		} elseif ($values['type'] === 'weeklyVerse') {
 			processWeeklyVerse($ppt, $values['collections']);
 		} elseif ($values['type'] === 'report') {
-			if (isset($values['collections'])) (new Slides\Report($ppt, $values['collections']))->add();
+			if (isset($values['collections'])) (new Slides\Report($ppt, array_values($values['collections'])))->add();
 		} elseif ($values['type'] === 'intercession') {
 			if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
 		} elseif ($values['type'] === 'opening') {
@@ -69,14 +69,16 @@ if (!empty($data)) foreach ($data as $section => $values) {
 	}
 }
 
-$fileName = 'OHP_' . date('Y-m-d-H-m-i');
+$fileName = 'OHP_' . date('Y-m-d');
 $afileName = explode(DIRECTORY_SEPARATOR, $fileName);
 $outputFile = __DIR__ . DIRECTORY_SEPARATOR . 'outputs' . DIRECTORY_SEPARATOR . $fileName . '.pptx';
 @unlink($outputFile);
 $oWriterPPTX = \PhpOffice\PhpPresentation\IOFactory::createWriter($ppt);
 $oWriterPPTX->save($outputFile);
 unset($oWriterPPTX);
-header('location: /outputs/' . $fileName . '.pptx');
+
+header('location: http://' . $_SERVER['HTTP_HOST'] . '/outputs/' . $fileName . '.pptx');
+exit();
 
 function processWorship(&$ppt, $collections) {
     if (!empty($collections)) foreach ($collections as $song) {
