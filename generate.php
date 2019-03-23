@@ -69,15 +69,20 @@ if (!empty($data)) foreach ($data as $section => $values) {
 	}
 }
 
-$fileName = 'OHP_' . date('Y-m-d');
-$afileName = explode(DIRECTORY_SEPARATOR, $fileName);
-$outputFile = __DIR__ . DIRECTORY_SEPARATOR . 'outputs' . DIRECTORY_SEPARATOR . $fileName . '.pptx';
+$fileName = 'OHP_' . date('Y-m-d') . '.pptx';
+$outputFile = __DIR__ . DIRECTORY_SEPARATOR . 'outputs' . DIRECTORY_SEPARATOR . $fileName;// . '.pptx';
 @unlink($outputFile);
 $oWriterPPTX = \PhpOffice\PhpPresentation\IOFactory::createWriter($ppt);
 $oWriterPPTX->save($outputFile);
 unset($oWriterPPTX);
 
-header('location: http://' . $_SERVER['HTTP_HOST'] . '/outputs/' . $fileName . '.pptx');
+$fp = fopen($outputFile, 'rb');
+header("Content-Length: " . filesize($outputFile));
+header("Content-Type: application/force-download");
+header('Content-Disposition: attachment; filename="'.$fileName.'"');
+
+fpassthru($fp);
+fclose($fp);
 exit();
 
 function processWorship(&$ppt, $collections) {
@@ -151,7 +156,9 @@ function processDedication(&$ppt, $values) {
     $collections = $values['collections'];
     $breakdown = array();
     foreach ($collections as $data) {
-        $breakdown[$data['type']] = $data['sum'];
+        if (!empty($data['type']) && !empty($data['sum'])) {
+            $breakdown[$data['type']] = $data['sum'];
+        }
     }
     (new Slides\Dedication(
         $ppt,
