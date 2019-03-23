@@ -205,7 +205,7 @@ function uuidv4()
                                     <input type="text" class="form-control" name="dedication[collections][<?=$id;?>][sum]" placeholder="統計">
                                 </div>
                             </div>
-                            <? } ?>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

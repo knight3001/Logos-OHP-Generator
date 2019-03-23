@@ -33,38 +33,40 @@ use \Core\Slides;
 
 $data = $_POST;
 
-foreach ($data as $section => $values) {
-    if ($values['type'] === 'worship') {
-        processWorship($ppt, $values['collections']);
-    } elseif ($values['type'] === 'hymn') {
-        processHymn($ppt, $values['collections']);
-    } elseif ($values['type'] === 'reading') {
-        processReading($ppt, $values['collections']);
-    } elseif ($values['type'] === 'groupWorship') {
-        processGroupWorship($ppt, $values['collections']);
-    } elseif ($values['type'] === 'preach') {
-        processPreach($ppt, $values);
-    } elseif ($values['type'] === 'dedication') {
-        processDedication($ppt, $values);
-    } elseif ($values['type'] === 'weeklyVerse') {
-        processWeeklyVerse($ppt, $values['collections']);
-    } elseif ($values['type'] === 'report') {
-        if (isset($values['collections'])) (new Slides\Report($ppt, $values['collections']))->add();
-    } elseif ($values['type'] === 'intercession') {
-        if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
-    } elseif ($values['type'] === 'opening') {
-        (new Slides\Opening($ppt))->add();
-    } elseif ($values['type'] === 'apostlesCreed') {
-        (new Slides\ApostlesCreed($ppt))->add();
-    } elseif ($values['type'] === 'tithing') {
-        (new Slides\Tithing($ppt))->add();
-    } elseif ($values['type'] === 'visitor') {
-        (new Slides\Visitor($ppt))->add();
-    } elseif ($values['type'] === 'lordsPrayer') {
-        (new Slides\LordsPrayer($ppt))->add();
-    } elseif ($values['type'] === 'ending') {
-        (new Slides\Ending($ppt))->add();
-    }
+if (!empty($data)) foreach ($data as $section => $values) {
+	if (isset($values['type'])) {
+		if ($values['type'] == 'worship') {
+			processWorship($ppt, $values['collections']);
+		} elseif ($values['type'] === 'hymn') {
+			processHymn($ppt, $values['collections']);
+		} elseif ($values['type'] === 'reading') {
+			processReading($ppt, $values['collections']);
+		} elseif ($values['type'] === 'groupWorship') {
+			processGroupWorship($ppt, $values['collections']);
+		} elseif ($values['type'] === 'preach') {
+			processPreach($ppt, $values);
+		} elseif ($values['type'] === 'dedication') {
+			processDedication($ppt, $values);
+		} elseif ($values['type'] === 'weeklyVerse') {
+			processWeeklyVerse($ppt, $values['collections']);
+		} elseif ($values['type'] === 'report') {
+			if (isset($values['collections'])) (new Slides\Report($ppt, $values['collections']))->add();
+		} elseif ($values['type'] === 'intercession') {
+			if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
+		} elseif ($values['type'] === 'opening') {
+			(new Slides\Opening($ppt))->add();
+		} elseif ($values['type'] === 'apostlesCreed') {
+			(new Slides\ApostlesCreed($ppt))->add();
+		} elseif ($values['type'] === 'tithing') {
+			(new Slides\Tithing($ppt))->add();
+		} elseif ($values['type'] === 'visitor') {
+			(new Slides\Visitor($ppt))->add();
+		} elseif ($values['type'] === 'lordsPrayer') {
+			(new Slides\LordsPrayer($ppt))->add();
+		} elseif ($values['type'] === 'ending') {
+			(new Slides\Ending($ppt))->add();
+		}
+	}
 }
 
 $fileName = 'OHP_' . date('Y-m-d-H-m-i');
