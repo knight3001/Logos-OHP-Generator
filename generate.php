@@ -19,6 +19,7 @@ if (isset($_POST['useLogo'])) {
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 include_once $OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Slides' . DIRECTORY_SEPARATOR . 'Base.php';
+use \Core\Slides;
 
 define('HYMN_DIR', $OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'hymns');
 define('WORSHIP_DIR',$OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR . 'hymns');
@@ -28,46 +29,7 @@ $ppt = new \PhpOffice\PhpPresentation\PhpPresentation();
 $ppt->getLayout()->setDocumentLayout(\PhpOffice\PhpPresentation\DocumentLayout::LAYOUT_SCREEN_16X9, true);
 $ppt->removeSlideByIndex(0);
 
-use \Core\Slides;
-
-
-$data = $_POST;
-
-if (!empty($data)) foreach ($data as $section => $values) {
-	if (isset($values['type'])) {
-		if ($values['type'] == 'worship') {
-			processWorship($ppt, $values['collections']);
-		} elseif ($values['type'] === 'hymn') {
-			processHymn($ppt, $values['collections']);
-		} elseif ($values['type'] === 'reading') {
-			processReading($ppt, $values['collections']);
-		} elseif ($values['type'] === 'groupWorship') {
-			processGroupWorship($ppt, $values['collections']);
-		} elseif ($values['type'] === 'preach') {
-			processPreach($ppt, $values);
-		} elseif ($values['type'] === 'dedication') {
-			processDedication($ppt, $values);
-		} elseif ($values['type'] === 'weeklyVerse') {
-			processWeeklyVerse($ppt, $values['collections']);
-		} elseif ($values['type'] === 'report') {
-			if (isset($values['collections'])) (new Slides\Report($ppt, array_values($values['collections'])))->add();
-		} elseif ($values['type'] === 'intercession') {
-			if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
-		} elseif ($values['type'] === 'opening') {
-			(new Slides\Opening($ppt))->add();
-		} elseif ($values['type'] === 'apostlesCreed') {
-			(new Slides\ApostlesCreed($ppt))->add();
-		} elseif ($values['type'] === 'tithing') {
-			(new Slides\Tithing($ppt))->add();
-		} elseif ($values['type'] === 'visitor') {
-			(new Slides\Visitor($ppt))->add();
-		} elseif ($values['type'] === 'lordsPrayer') {
-			(new Slides\LordsPrayer($ppt))->add();
-		} elseif ($values['type'] === 'ending') {
-			(new Slides\Ending($ppt))->add();
-		}
-	}
-}
+process($ppt, $_POST);
 
 $fileName = 'OHP_' . date('Y-m-d') . '.pptx';
 $outputFile = __DIR__ . DIRECTORY_SEPARATOR . 'outputs' . DIRECTORY_SEPARATOR . $fileName;// . '.pptx';
@@ -77,27 +39,70 @@ $oWriterPPTX->save($outputFile);
 unset($oWriterPPTX);
 
 $fp = fopen($outputFile, 'rb');
-header("Content-Length: " . filesize($outputFile));
-header("Content-Type: application/force-download");
+header('Content-Length: ' . filesize($outputFile));
+header('Content-Type: application/force-download');
 header('Content-Disposition: attachment; filename="'.$fileName.'"');
 
 fpassthru($fp);
 fclose($fp);
+unlink($outputFile);
 exit();
 
-function processWorship(&$ppt, $collections) {
+function process(&$ppt, $data)
+{
+    if (!empty($data)) foreach ($data as $section => $values) {
+        if (isset($values['type'])) {
+            if ($values['type'] === 'worship') {
+                processWorship($ppt, $values['collections']);
+            } elseif ($values['type'] === 'hymn') {
+                processHymn($ppt, $values['collections']);
+            } elseif ($values['type'] === 'reading') {
+                processReading($ppt, $values['collections']);
+            } elseif ($values['type'] === 'groupWorship') {
+                processGroupWorship($ppt, $values['collections']);
+            } elseif ($values['type'] === 'preach') {
+                processPreach($ppt, $values);
+            } elseif ($values['type'] === 'dedication') {
+                processDedication($ppt, $values);
+            } elseif ($values['type'] === 'weeklyVerse') {
+                processWeeklyVerse($ppt, $values['collections']);
+            } elseif ($values['type'] === 'report') {
+                if (isset($values['collections'])) (new Slides\Report($ppt, array_values($values['collections'])))->add();
+            } elseif ($values['type'] === 'intercession') {
+                if (isset($values['collections'])) (new Slides\Intercession($ppt, $values['collections']))->add();
+            } elseif ($values['type'] === 'opening') {
+                (new Slides\Opening($ppt))->add();
+            } elseif ($values['type'] === 'apostlesCreed') {
+                (new Slides\ApostlesCreed($ppt))->add();
+            } elseif ($values['type'] === 'tithing') {
+                (new Slides\Tithing($ppt))->add();
+            } elseif ($values['type'] === 'visitor') {
+                (new Slides\Visitor($ppt))->add();
+            } elseif ($values['type'] === 'lordsPrayer') {
+                (new Slides\LordsPrayer($ppt))->add();
+            } elseif ($values['type'] === 'ending') {
+                (new Slides\Ending($ppt))->add();
+            }
+        }
+    }
+}
+
+function processWorship(&$ppt, $collections)
+{
     if (!empty($collections)) foreach ($collections as $song) {
         (new Slides\Worship($ppt, $song))->add();
     }
 }
 
-function processHymn(&$ppt, $collections) {
+function processHymn(&$ppt, $collections)
+{
     if (!empty($collections)) foreach ($collections as $song) {
         (new Slides\Hymn($ppt, $song))->add();
     }
 }
 
-function processReading(&$ppt, $collections, $getObj = false) {
+function processReading(&$ppt, $collections, $getObj = false)
+{
     $objs = array();
     if (!empty($collections)) foreach ($collections as $readingDetails) {
         $book = $readingDetails['book'];
@@ -125,11 +130,13 @@ function processReading(&$ppt, $collections, $getObj = false) {
     }
 }
 
-function processGroupWorship(&$ppt, $collections) {
+function processGroupWorship(&$ppt, $collections)
+{
     (new Slides\GroupWorship($ppt, $collections['group'], $collections['song']))->add(); // 獻詩
 }
 
-function processPreach(&$ppt, $collections) {
+function processPreach(&$ppt, $collections)
+{
     $preacher = $collections['preacher'];
     $title = $collections['title'];
     $outlines = array();
@@ -151,7 +158,8 @@ function processPreach(&$ppt, $collections) {
     ))->add();
 }
 
-function processDedication(&$ppt, $values) {
+function processDedication(&$ppt, $values)
+{
     $summary = $values['summary'];
     $collections = $values['collections'];
     $breakdown = array();
@@ -167,6 +175,7 @@ function processDedication(&$ppt, $values) {
     ))->add();
 }
 
-function processWeeklyVerse(&$ppt, $values) {
+function processWeeklyVerse(&$ppt, $values)
+{
     (new Slides\WeeklyVerse($ppt, $values['verse'], $values['chapter']))->add(); // 金句
 }

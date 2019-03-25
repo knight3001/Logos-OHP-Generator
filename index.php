@@ -1,28 +1,6 @@
 <?php
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-function uuidv4()
-{
-    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
-        // 32 bits for "time_low"
-        random_int( 0, 0xffff ), random_int( 0, 0xffff ),
-
-        // 16 bits for "time_mid"
-        random_int( 0, 0xffff ),
-
-        // 16 bits for "time_hi_and_version",
-        // four most significant bits holds version number 4
-        random_int( 0, 0x0fff ) | 0x4000,
-
-        // 16 bits, 8 bits for "clk_seq_hi_res",
-        // 8 bits for "clk_seq_low",
-        // two most significant bits holds zero and one for variant DCE1.1
-        random_int( 0, 0x3fff ) | 0x8000,
-
-        // 48 bits for "node"
-        random_int( 0, 0xffff ), random_int( 0, 0xffff ), random_int( 0, 0xffff )
-    );
-}
 ?>
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -36,8 +14,8 @@ function uuidv4()
     <link rel="stylesheet" href="assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="assets/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="assets/bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -54,7 +32,7 @@ function uuidv4()
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="layout-top-nav skin-blue">
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -89,7 +67,7 @@ function uuidv4()
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>主日 - 讀經</h4>
+                                <h4>讀經</h4>
                                 <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat newReadingBtn" data-target="reading">新增</button>
                                 </span>
@@ -108,7 +86,7 @@ function uuidv4()
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>主日 - 獻詩</h4>
+                                <h4>獻詩</h4>
                             </div>
                         </div>
                         <div class="box-body">
@@ -128,7 +106,7 @@ function uuidv4()
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>主日 - 講道</h4>
+                                <h4>講道</h4>
                             </div>
                         </div>
                         <div class="box-body">
@@ -181,14 +159,14 @@ function uuidv4()
             </div>
             <?php printSimpleRow('奉獻', 'tithing'); ?>
             <?php printSimpleRow('新朋友', 'visitor'); ?>
-            <?php printReportRow('H. 報告', 'newReportBtn', 'report'); ?>
-            <?php printReportRow('I. 代禱', 'newIntercessionBtn', 'intercession'); ?>
+            <?php printReportRow('報告', 'newReportBtn', 'report'); ?>
+            <?php printReportRow('代禱', 'newIntercessionBtn', 'intercession'); ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>J. 上周奉獻</h4>
+                                <h4>上周奉獻</h4>
                             </div>
                         </div>
                         <div class="box-body">
@@ -215,7 +193,7 @@ function uuidv4()
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <div class="input-group input-group-sm">
-                                <h4>K. 金句</h4>
+                                <h4>金句</h4>
                             </div>
                         </div>
                         <div class="box-body">
@@ -251,9 +229,15 @@ function uuidv4()
     </section>
 </div>
 </body>
-<script src="assets/jquery-3.2.1.min.js"></script>
+<!-- jQuery 3 -->
+<script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script>
     $(document).ready(function() {
+        //Initialize Select2 Elements
 		$(document).on('click', '.newReportBtn', function() {
             var id = uuidv4();
             var holder = $(this).data('target');
@@ -298,7 +282,7 @@ function uuidv4()
                     "   <span class=\"input-group-addon deleteBtn\">" +
                     "       <i class=\"fa fa-close\"></i>" +
                     "   </span>" +
-                    "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                    "   <select class=\"form-control select2 select2-hidden-accessible worshipSelector\" style=\"width: 100%\" name=\"" + holder + "[collections]["+id+"]\">" +
                     "			<option value=\"\"></option>";
                 $.each(data, function(key, value) {
                     html += '<option value="' + value + '">' + value + '</value>';
@@ -307,6 +291,7 @@ function uuidv4()
                     "   </select>" +
                     "</div>";
                 $('#' + holder).append(html);
+                $('.worshipSelector').select2();
             });
         });
 
@@ -324,7 +309,7 @@ function uuidv4()
                     "   <span class=\"input-group-addon deleteBtn\">" +
                     "       <i class=\"fa fa-close\"></i>" +
                     "   </span>" +
-                    "   <select class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\">" +
+                    "   <select class=\"form-control select2 select2-hidden-accessible hymnSelector\" style=\"width: 100%\" name=\"" + holder + "[collections]["+id+"]\">" +
                     "			<option value=\"\"></option>";
                 $.each(data, function(key, value) {
                     html += '<option value="' + value + '">' + value + '</value>';
@@ -333,50 +318,56 @@ function uuidv4()
                     "   </select>" +
                     "</div>";
                 $('#' + holder).append(html);
+                $('.hymnSelector').select2();
             });
         });
 
 		$(document).on('click', '.newReadingBtn', function() {
 		    var id = uuidv4();
             var holder = $(this).data('target');
-            var nameVal = $('#' + holder).data('id');
+            var holderSelector = $('#' + holder);
+            var nameVal = holderSelector.data('id');
             if (nameVal == undefined) {
                 nameVal = holder;
             }
-            $('#' + holder).append("" +
+            holderSelector.append("" +
 				"<div class=\"input-group input-group-sm rootGroup\">" +
 				"	<span class=\"input-group-addon deleteBtn\">" +
 				"		<i class=\"fa fa-close\"></i>" +
 				"	</span>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>卷</label>" +
-				"		<select class=\"form-control bookSelector\" name=\"" + nameVal + "[collections]["+id+"][book]\">" +
+				"		<select class=\"form-control select2 select2-hidden-accessible bookSelector\" style=\"width: 100%\" name=\"" + nameVal + "[collections]["+id+"][book]\">" +
 				"			<option value=\"\"></option>" +
 				<?php
 				foreach (\Core\VerseTable::$table as $shortName => $details) {
-					echo '"				<option value=\"' . $details[2] . '\">' . $shortName . '-' . $details[0] . '</option>" +';
+					echo '"				<option value=\"' . $details[2] . '\">' . $shortName . ' - ' . $details[0] . ' (' . $details[2] . ')' . '</option>" +';
 				}
 				?>
 				"		</select>" +
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>章</label>" +
-				"		<select class=\"form-control chapterSelector\" name=\""+nameVal+"[collections]["+id+"][chapter]\">" +
+				"		<select class=\"form-control select2 select2-hidden-accessible chapterSelector\" style=\"width: 100%\" name=\""+nameVal+"[collections]["+id+"][chapter]\">" +
 				"		</select>" +
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>開始</label>" +
-				"		<select class=\"form-control segmentStartSelector\" name=\""+nameVal+"[collections]["+id+"][start]\">" +
+				"		<select class=\"form-control select2 select2-hidden-accessible segmentStartSelector\" style=\"width: 100%\" name=\""+nameVal+"[collections]["+id+"][start]\">" +
 				"		</select>" +
 				"	</div>" +
 				"	<div class=\"col-md-3\">" +
 				"		<label>結束</label>" +
-				"		<select class=\"form-control segmentEndSelector\" name=\""+nameVal+"[collections]["+id+"][end]\">" +
+				"		<select class=\"form-control select2 select2-hidden-accessible segmentEndSelector\" style=\"width: 100%\" name=\""+nameVal+"[collections]["+id+"][end]\">" +
 				"		</select>" +
 				"	</div>" +
 				"</div>"
 			);
-		});
+            $('.bookSelector').select2();
+            $('.chapterSelector').select2();
+            $('.segmentStartSelector').select2();
+            $('.segmentEndSelector').select2();
+        });
 
 		$(document).on('click', '.newOutlineBtn', function() {
 		    var id = uuidv4();
@@ -552,4 +543,27 @@ function printReportRow($title, $btnClass, $target) {
         </div>
     </div>
     ';
+}
+
+function uuidv4()
+{
+    return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+        // 32 bits for "time_low"
+        random_int( 0, 0xffff ), random_int( 0, 0xffff ),
+
+        // 16 bits for "time_mid"
+        random_int( 0, 0xffff ),
+
+        // 16 bits for "time_hi_and_version",
+        // four most significant bits holds version number 4
+        random_int( 0, 0x0fff ) | 0x4000,
+
+        // 16 bits, 8 bits for "clk_seq_hi_res",
+        // 8 bits for "clk_seq_low",
+        // two most significant bits holds zero and one for variant DCE1.1
+        random_int( 0, 0x3fff ) | 0x8000,
+
+        // 48 bits for "node"
+        random_int( 0, 0xffff ), random_int( 0, 0xffff ), random_int( 0, 0xffff )
+    );
 }
