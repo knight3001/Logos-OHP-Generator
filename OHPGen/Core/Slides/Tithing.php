@@ -32,7 +32,7 @@ class Tithing extends Main
 
     protected function addMainSlide(): void
     {
-        (new Hymn($this->ppt, 386, true))->add();
+        (new Hymn($this->ppt, '386_將最好獻主.ini', true))->add();
     }
 
     protected function addEndSlide(): void
