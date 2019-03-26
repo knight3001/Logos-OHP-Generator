@@ -16,6 +16,13 @@ if (isset($_POST['useLogo'])) {
     define('USE_LOGO', true);
 }
 
+$filePrefix = 'OHP_';
+if (isset($_REQUEST['type'])) {
+    if ($_REQUEST['type'] === 'verse') {
+        $filePrefix = 'Verse_';
+    }
+}
+
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 include_once $OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Slides' . DIRECTORY_SEPARATOR . 'Base.php';
@@ -31,7 +38,7 @@ $ppt->removeSlideByIndex(0);
 
 process($ppt, $_POST);
 
-$fileName = 'OHP_' . date('Y-m-d') . '.pptx';
+$fileName = $filePrefix . date('Y-m-d') . '.pptx';
 $outputFile = __DIR__ . DIRECTORY_SEPARATOR . 'outputs' . DIRECTORY_SEPARATOR . $fileName;// . '.pptx';
 @unlink($outputFile);
 $oWriterPPTX = \PhpOffice\PhpPresentation\IOFactory::createWriter($ppt);

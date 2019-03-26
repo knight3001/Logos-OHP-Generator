@@ -25,8 +25,16 @@ class Verse extends Main
     {
         $this->book = $book;
         $this->chapter = $chapter;
-        $this->start = $start;
-        $this->end = $end;
+
+        if ($end === null) {
+            $end = $start;
+        }
+
+        $max = max($start, $end);
+        $min = min($start, $end);
+
+        $this->start = $min;
+        $this->end = $max;
         $this->loadContents();
         parent::__construct($ppt);
     }
