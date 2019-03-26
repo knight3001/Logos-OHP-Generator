@@ -80,20 +80,32 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                                             <?php } ?>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>章</label>
                                         <select class="form-control select2 select2-hidden-accessible chapterSelector" style="width: 100%" name="verse[collections][0][chapter]">
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>開始</label>
                                         <select class="form-control select2 select2-hidden-accessible segmentStartSelector" style="width: 100%" name="verse[collections][0][start]">
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <label>結束</label>
                                         <select class="form-control select2 select2-hidden-accessible segmentEndSelector" style="width: 100%" name="verse[collections][0][end]">
                                         </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="verse[lang][zh]" class="zhLangSelector" value="1" checked="checked">中文
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="verse[lang][en]" class="enLangSelector" value="1" checked="checked">英文
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +148,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
             $(document).on('change', '.bookSelector', function() {
                 var rootGroup = $(this).parents('.rootGroup');
-                var book = $(this).children("option:selected"). val();
+                var book = $(this).children("option:selected").val();
                 $.ajax({
                     url: '/bibleListRetriever.php',
                     type: 'get',
@@ -153,8 +165,8 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
             $(document).on('change', '.chapterSelector', function() {
                 var rootGroup = $(this).parents('.rootGroup');
-                var book = rootGroup.find('.bookSelector').children("option:selected"). val();
-                var chapter = $(this).children("option:selected"). val();
+                var book = rootGroup.find('.bookSelector').children("option:selected").val();
+                var chapter = $(this).children("option:selected").val();
                 $.ajax({
                     url: '/bibleListRetriever.php',
                     type: 'get',
@@ -170,45 +182,92 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
             $(document).on('change', '.segmentStartSelector', function() {
                 var rootGroup = $(this).parents('.rootGroup');
-                var book = rootGroup.find('.bookSelector').children("option:selected"). val();
-                var chapter = rootGroup.find('.chapterSelector').children("option:selected"). val();
-                var startSeg = $(this).children("option:selected"). val();
-                $.ajax({
-                    url: '/bibleListRetriever.php',
-                    type: 'get',
-                    dataType: "json",
-                    data: {
-                        book: book,
-                        chapter: chapter,
-                        startseg: startSeg,
-                        getverse: true
-                    }
-                }).done(function(data) {
-                    $('.verseContentBlock').html(data);
-                });
+                updateVerse(rootGroup);
+                // var book = rootGroup.find('.bookSelector').children("option:selected").val();
+                // var chapter = rootGroup.find('.chapterSelector').children("option:selected").val();
+                // var startSeg = $(this).children("option:selected").val();
+                // var zh = rootGroup.find('.zhLangSelector').checked;
+                // var en = rootGroup.find('.enLangSelector').checked;
+                // $.ajax({
+                //     url: '/bibleListRetriever.php',
+                //     type: 'get',
+                //     dataType: "json",
+                //     data: {
+                //         book: book,
+                //         chapter: chapter,
+                //         startseg: startSeg,
+                //         zh: zh,
+                //         en: en,
+                //         getverse: true
+                //     }
+                // }).done(function(data) {
+                //     $('.verseContentBlock').html(data);
+                // });
             });
 
             $(document).on('change', '.segmentEndSelector', function() {
                 var rootGroup = $(this).parents('.rootGroup');
-                var book = rootGroup.find('.bookSelector').children("option:selected"). val();
-                var chapter = rootGroup.find('.chapterSelector').children("option:selected"). val();
-                var startSeg = rootGroup.find('.segmentStartSelector').children("option:selected"). val();
-                var endSeg = $(this).children("option:selected"). val();
-                $.ajax({
-                    url: '/bibleListRetriever.php',
-                    type: 'get',
-                    dataType: "json",
-                    data: {
-                        book: book,
-                        chapter: chapter,
-                        startseg: startSeg,
-                        endseg: endSeg,
-                        getverse: true
-                    }
-                }).done(function(data) {
-                    $('.verseContentBlock').html(data);
-                });
+                updateVerse(rootGroup);
+                // var book = rootGroup.find('.bookSelector').children("option:selected").val();
+                // var chapter = rootGroup.find('.chapterSelector').children("option:selected").val();
+                // var startSeg = rootGroup.find('.segmentStartSelector').children("option:selected").val();
+                // var endSeg = $(this).children("option:selected").val();
+                // var zh = rootGroup.find('.zhLangSelector').checked;
+                // var en = rootGroup.find('.enLangSelector').checked;
+                // $.ajax({
+                //     url: '/bibleListRetriever.php',
+                //     type: 'get',
+                //     dataType: "json",
+                //     data: {
+                //         book: book,
+                //         chapter: chapter,
+                //         startseg: startSeg,
+                //         endseg: endSeg,
+                //         zh: zh,
+                //         en: en,
+                //         getverse: true
+                //     }
+                // }).done(function(data) {
+                //     $('.verseContentBlock').html(data);
+                // });
             });
+
+            $(document).on('click', '.zhLangSelector', function() {
+                var rootGroup = $(this).parents('.rootGroup');
+                updateVerse(rootGroup);
+            });
+
+            $(document).on('click', '.enLangSelector', function() {
+                var rootGroup = $(this).parents('.rootGroup');
+                updateVerse(rootGroup);
+            });
+
+            function updateVerse(rootGroup) {
+                var book = rootGroup.find('.bookSelector').children("option:selected").val();
+                var chapter = rootGroup.find('.chapterSelector').children("option:selected").val();
+                var startSeg = rootGroup.find('.segmentStartSelector').children("option:selected").val();
+                var endSeg = rootGroup.find('.segmentEndSelector').children("option:selected").val();
+                var zh = rootGroup.find('.zhLangSelector').is(":checked")? true : false;
+                var en = rootGroup.find('.enLangSelector').is(":checked")? true : false;
+                if (book != '' && chapter != '' && startSeg != '') {
+                    $.ajax({
+                        url: '/bibleListRetriever.php',
+                        type: 'get',
+                        dataType: "json",
+                        data: {
+                            book: book,
+                            chapter: chapter,
+                            startseg: startSeg,
+                            endseg: endSeg,
+                            zh: zh,
+                            en: en,
+                            getverse: true
+                        }
+                    }).done(function(data) {
+                        $('.verseContentBlock').html(data);
+                    });
+                }
+            }
 
             function updateChapterSelector(rootGroup, list) {
                 var selector = rootGroup.find('.chapterSelector');

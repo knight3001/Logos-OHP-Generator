@@ -13,7 +13,9 @@ $book = empty($_GET['book'])? null : $_GET['book'];
 $chapter = empty($_GET['chapter'])? null : (int)$_GET['chapter'];
 $startSeg = empty($_GET['startseg'])? null : (int)$_GET['startseg'];
 $endSeg = empty($_GET['endseg'])? null : (int)$_GET['endseg'];
-$getVerse = empty($_GET['getverse'])? null : (bool)$_GET['getverse'];
+$getVerse = empty($_GET['getverse'])? true : $_GET['getverse'] === 'true';
+$en = empty($_GET['en'])? true : $_GET['en'] === 'true';
+$zh = empty($_GET['zh'])? true : $_GET['zh'] === 'true';
 
 // if book is not set, return a list of books
 if ($book === null) {
@@ -65,7 +67,7 @@ if ($startSeg === null) {
 // if endseg is not set, return startseg verse
 if ($endSeg === null) {
     if ($getVerse !== null && $getVerse) {
-        displayVerse($book, $parsedEnBook, $parsedZhBook, $chapter, $startSeg);
+        displayVerse($book, $parsedEnBook, $parsedZhBook, $en, $zh, $chapter, $startSeg);
         exit();
     }
     echo json_encode($parsedEnBook[$chapter][$startSeg]);
@@ -73,7 +75,7 @@ if ($endSeg === null) {
 }
 
 if ($getVerse !== null && $getVerse) {
-    displayVerse($book, $parsedEnBook, $parsedZhBook, $chapter, $startSeg, $endSeg);
+    displayVerse($book, $parsedEnBook, $parsedZhBook, $en, $zh, $chapter, $startSeg, $endSeg);
     exit();
 }
 
@@ -89,7 +91,7 @@ echo json_encode($result);
 exit();
 
 
-function displayVerse($book, $parsedEnBook, $parsedZhBook, $chapter, $startSeg, $endSeg = null)
+function displayVerse($book, $parsedEnBook, $parsedZhBook, $en, $zh, $chapter, $startSeg, $endSeg = null)
 {
     $bookDetails = null;
     $enTitle = null;
@@ -111,18 +113,39 @@ function displayVerse($book, $parsedEnBook, $parsedZhBook, $chapter, $startSeg, 
         $start = min($startSeg, $endSeg);
         $end = max($startSeg, $endSeg);
 
-        $enTitle = $bookDetails[2] . ' ' . $chapter . ':' . $start . ((!empty($end) && $start !== $end)? '-' . $end : '');
-        $zhTitle = $bookDetails[0] . ' ' . $chapter . '章' . $start . ((!empty($end) && $start !== $end)? '-' . $end : '') . '節';
+        $zhTitle = $bookDetails[0] . ' ' . $chapter . '章' . $start . ((!empty($end) && $start !== $end) ? '-' . $end : '') . '節';
+        $enTitle = $bookDetails[2] . ' ' . $chapter . ':' . $start . ((!empty($end) && $start !== $end) ? '-' . $end : '');
 
-        $title = $zhTitle . "\n" . $enTitle;
+        if ($zh) {
+
+            $title = $zhTitle;
+        }
+
+        if ($en) {
+            if ($title !== '') {
+                $title .= "\n";
+            }
+            $title .= $enTitle;
+        }
 
         $aVerse = array();
         for ($i = $start; $i <= $end; $i++) {
-            $aVerse[] = "$chapter:$i " . $parsedZhBook[$chapter][$i] . "\n" . "$chapter:$i " . $parsedEnBook[$chapter][$i];
+            $thisVerse = '';
+            $enVerse = "$chapter:$i " . $parsedEnBook[$chapter][$i];
+            $zhVerse = "$chapter:$i " . $parsedZhBook[$chapter][$i];
+            if ($zh) {
+                $thisVerse = $zhVerse;
+            }
+            if ($en) {
+                if ($thisVerse !== '') {
+                    $thisVerse .= "\n";
+                }
+                $thisVerse .= $enVerse;
+            }
+            $aVerse[] = $thisVerse;
         }
 
         $verse = implode("\n", $aVerse);
     }
-
     echo json_encode($title . "\n\n" . $verse);
 }
