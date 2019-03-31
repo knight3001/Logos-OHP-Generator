@@ -25,8 +25,16 @@ class Verse extends Main
     {
         $this->book = $book;
         $this->chapter = $chapter;
-        $this->start = $start;
-        $this->end = $end;
+
+        if ($end === null) {
+            $end = $start;
+        }
+
+        $max = max($start, $end);
+        $min = min($start, $end);
+
+        $this->start = $min;
+        $this->end = $max;
         $this->loadContents();
         parent::__construct($ppt);
     }
@@ -54,19 +62,18 @@ class Verse extends Main
         $idxZhContents = array();
         $enContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . VerseTable::$table[$this->book][2] . '-NIV.txt'));
         $zhContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . VerseTable::$table[$this->book][2] . '-CUV.txt_utf8.txt'));
-        foreach ($enContents as $content) {
-            $aContent = explode(' ', $content);
-            $idx = $aContent[0];
-            unset($aContent[0]);
-            $trimmedContent = implode(' ', $aContent);
-            $idxEnContents[$idx] = $trimmedContent;
-        }
-        foreach ($zhContents as $content) {
-            $aContent = explode(' ', $content);
-            $idx = $aContent[0];
-            unset($aContent[0]);
-            $trimmedContent = implode(' ', $aContent);
-            $idxZhContents[$idx] = $trimmedContent;
+        $lines = count($enContents);
+
+        for ($i = 0; $i < $lines; $i++) {
+            $aEnContent = explode(' ', $enContents[$i]);
+            $idx = $aEnContent[0];
+            $aZhContent = explode(' ', $zhContents[$i]);
+
+            unset($aEnContent[0], $aZhContent[0]);
+            $trimmedEnContent = trim(implode(' ', $aEnContent));
+            $trimmedZhContent = trim(implode(' ', $aZhContent));
+            $idxEnContents[$idx] = $trimmedEnContent;
+            $idxZhContents[$idx] = $trimmedZhContent;
         }
 
         $end = $this->end ?? $this->start;

@@ -33,6 +33,27 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="layout-top-nav skin-blue">
+<header class="main-header">
+    <nav class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand"><b>恩道教會</b></a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">OHP Generator</span></a></li>
+                    <li><a href="/verseRetriever.php">Verse Retriever</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+</header>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -41,7 +62,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
         </h1>
     </section>
     <section class="content">
-        <form role="form" id="ohpContainer" class="ohpContainer" target="_blank" action="/generate.php" method="post">
+        <form role="form" id="ohpContainer" class="ohpContainer" target="_blank" action="/generate.php?type=ohp" method="post">
 <!--            <div class="row">-->
 <!--                <div class="col-md-12">-->
 <!--                    <div class="box box-primary">-->
@@ -222,7 +243,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                         <label>
                             <input type="checkbox" name="useLogo" value="1">使用 Logo
                         </label>
-                    </span>
+                    </div>
                 </div>
             </div>
         </form>
@@ -396,7 +417,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
             var rootGroup = $(this).parents('.rootGroup');
             var book = $(this).children("option:selected"). val();
             $.ajax({
-                url: '/bibleRetriever.php',
+                url: '/bibleListRetriever.php',
                 type: 'get',
                 dataType: "json",
                 data: {
@@ -413,7 +434,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
             var chapter = $(this).children("option:selected"). val();
             // var book = $(this).children("option:selected"). val();
             $.ajax({
-                url: '/bibleRetriever.php',
+                url: '/bibleListRetriever.php',
                 type: 'get',
                 dataType: "json",
                 data: {
