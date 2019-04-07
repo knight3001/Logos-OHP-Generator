@@ -13,11 +13,17 @@ use PhpOffice\PhpPresentation\Shape\RichText;
 
 class ApostlesCreed extends Main
 {
+    /**
+     * @return void
+     */
     protected function addStartSlide(): void
     {
         // dont do anything
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function addMainSlide(): void
     {
         $Slide = $this->newSlide();

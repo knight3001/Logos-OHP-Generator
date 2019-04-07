@@ -13,18 +13,30 @@ use PhpOffice\PhpPresentation\Style\Alignment;
 class Baptized extends Main
 {
     protected $names;
+
+    /**
+     * Baptized constructor.
+     * @param $ppt
+     * @param array $names
+     */
     public function __construct($ppt, $names = array())
     {
         $this->names = $names;
         parent::__construct($ppt);
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function addStartSlide(): void
     {
         $this->sectionStartSlide('大主日', '[大主日 - Begin]');
         $this->sectionStartSlide('大主日', '聖洗禮');
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function addMainSlide(): void
     {
         $slide = $this->newSlide();
@@ -50,7 +62,7 @@ class Baptized extends Main
         $content->createTextRun(implode('、', $this->names));
 
         $this->newSlide();
-        (new Hymn($this->ppt, 79))->add();
+        (new Hymn($this->ppt, '079_只有寶血.ini'))->add();
     }
 
     protected function addEndSlide(): void
