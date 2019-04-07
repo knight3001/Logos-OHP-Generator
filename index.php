@@ -229,6 +229,7 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
                     </div>
                 </div>
             </div>
+            <?php printReportRow('大主日 - 受洗人', 'newBaptizeBtn', 'baptize'); ?>
             <?php printHymnRow('主日 - 唱詩 (3)', 'hymn3'); ?>
             <?php printSimpleRow('主禱文', 'lordsPrayer'); ?>
             <?php printSimpleRow('結束', 'ending'); ?>
@@ -271,6 +272,19 @@ include_once $OHPFolder . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 				"</div>"
 			);
 		});
+
+        $(document).on('click', '.newBaptizeBtn', function() {
+            var id = uuidv4();
+            var holder = $(this).data('target');
+            $('#' + holder).append("" +
+                "<div class=\"input-group input-group-sm rootGroup\">" +
+                "   <span class=\"input-group-addon deleteBtn\">" +
+                "       <i class=\"fa fa-close\"></i>" +
+                "   </span>" +
+                "   <input type=\"text\" class=\"form-control\" name=\"" + holder + "[collections]["+id+"]\" placeholder=\"\">" +
+                "</div>"
+            );
+        });
 
 		$(document).on('click', '.newIntercessionBtn', function() {
             var id = uuidv4();

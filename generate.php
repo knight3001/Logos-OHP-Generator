@@ -60,13 +60,13 @@ function process(&$ppt, $data)
     if (!empty($data)) foreach ($data as $section => $values) {
         if (isset($values['type'])) {
             if ($values['type'] === 'worship') {
-                processWorship($ppt, $values['collections']);
+                if (isset($values['collections'])) processWorship($ppt, $values['collections']);
             } elseif ($values['type'] === 'hymn') {
-                processHymn($ppt, $values['collections']);
+                if (isset($values['collections'])) processHymn($ppt, $values['collections']);
             } elseif ($values['type'] === 'reading') {
-                processReading($ppt, $values['collections']);
+                if (isset($values['collections'])) processReading($ppt, $values['collections']);
             } elseif ($values['type'] === 'groupWorship') {
-                processGroupWorship($ppt, $values['collections']);
+                if (isset($values['collections'])) processGroupWorship($ppt, $values['collections']);
             } elseif ($values['type'] === 'preach') {
                 processPreach($ppt, $values);
             } elseif ($values['type'] === 'dedication') {
@@ -85,6 +85,8 @@ function process(&$ppt, $data)
                 (new Slides\Tithing($ppt))->add();
             } elseif ($values['type'] === 'visitor') {
                 (new Slides\Visitor($ppt))->add();
+            } elseif ($values['type'] === 'baptize') {
+                if (isset($values['collections'])) (new Slides\Baptized($ppt, array_values($values['collections'])))->add();
             } elseif ($values['type'] === 'lordsPrayer') {
                 (new Slides\LordsPrayer($ppt))->add();
             } elseif ($values['type'] === 'ending') {
@@ -146,9 +148,15 @@ function processPreach(&$ppt, $collections)
 {
     $preacher = $collections['preacher'];
     $title = $collections['title'];
+    $preface = [];
+    $conclusion = [];
     $outlines = array();
-    $preface = processReading($ppt, $collections['preface']['collections'], true);
-    $conclusion = processReading($ppt, $collections['conclusion']['collections'], true);
+    if (isset($collections['preface'])) {
+        $preface = processReading($ppt, $collections['preface']['collections'], true);
+    }
+    if (isset($collections['conclusion'])) {
+        $conclusion = processReading($ppt, $collections['conclusion']['collections'], true);
+    }
     if (isset($collections['outline'])) foreach ($collections['outline'] as $outline) {
         $outlineTitle = $outline['title'];
         $outlineReadings = $outline['collections'];

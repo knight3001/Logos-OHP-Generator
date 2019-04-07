@@ -44,7 +44,9 @@ define('MAIN_PAGE_Y', PPT_HEIGHT-MAIN_PAGE_HEIGHT);
 abstract class Main extends Base
 {
     /**
+     * Subtitle Shape - Chinese
      * @return AbstractShape
+     * @throws \Exception
      */
     protected function zhSubTitleShape(): AbstractShape
     {
@@ -69,6 +71,11 @@ abstract class Main extends Base
         return $shape;
     }
 
+    /**
+     * Subtitle Shape - English
+     * @return AbstractShape
+     * @throws \Exception
+     */
     protected function enSubTitleShape(): AbstractShape
     {
         $font = new Font();
@@ -93,7 +100,9 @@ abstract class Main extends Base
     }
 
     /**
+     * Content Shape
      * @return AbstractShape
+     * @throws \Exception
      */
     protected function contentShape(): AbstractShape
     {
@@ -119,7 +128,9 @@ abstract class Main extends Base
     }
 
     /**
+     * Start Content Shape
      * @return AbstractShape
+     * @throws \Exception
      */
     protected function startContentShape(): AbstractShape
     {
@@ -144,6 +155,11 @@ abstract class Main extends Base
         return $shape;
     }
 
+    /**
+     * New Slide
+     * @return Slide
+     * @throws \Exception
+     */
     protected function newSlide(): Slide
     {
         $slide = $this->ppt->createSlide();
@@ -158,6 +174,12 @@ abstract class Main extends Base
         return $slide;
     }
 
+    /**
+     * @param string $sub
+     * @param string $main
+     * @param bool $isVisible
+     * @throws \Exception
+     */
     protected function sectionStartSlide($sub, $main, $isVisible = true): void
     {
         $Slide = $this->newSlide();
@@ -171,6 +193,10 @@ abstract class Main extends Base
         $Slide->setIsVisible($isVisible);
     }
 
+    /**
+     * @return AbstractShape
+     * @throws \Exception
+     */
     protected function pageNoShape(): AbstractShape
     {
         $font = new Font();
