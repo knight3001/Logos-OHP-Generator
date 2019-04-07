@@ -30,7 +30,7 @@ class Baptized extends Main
      */
     protected function addStartSlide(): void
     {
-        $this->sectionStartSlide('大主日', '[大主日 - Begin]');
+        $this->sectionStartSlide('大主日', '[大主日 - Begin]', false);
         $this->sectionStartSlide('大主日', '聖洗禮');
     }
 
@@ -67,6 +67,6 @@ class Baptized extends Main
 
     protected function addEndSlide(): void
     {
-        $this->sectionStartSlide('大主日', '[大主日 - End]');
+        $this->sectionStartSlide('大主日', '[大主日 - End]', false);
     }
 }

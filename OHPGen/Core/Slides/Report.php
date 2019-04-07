@@ -86,7 +86,9 @@ class Report extends Main
             for ($j = 0; $j < 3; $j++) {
                 $key = $i*3 + $j;
                 if (isset($this->reports[$key])) {
-                    $thisContent[] = trim($this->reports[$key]);
+                    $content = trim($this->reports[$key]);
+                    $content = trim(preg_replace('/^([0-9]{1,}.[\t]{0,}[\n]{0,})/', '', $content));
+                    $thisContent[] = $content;
                 }
             }
             $this->bulletSlide($i*3+1, '報告', implode("\n", $thisContent));

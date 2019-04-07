@@ -80,7 +80,9 @@ class Intercession extends Main
     protected function addMainSlide(): void
     {
         foreach ($this->intersessions as $key => $intersession) {
-            $this->intersessions[$key] = trim($intersession);
+            $intersession = trim($intersession);
+            $intersession = trim(preg_replace('/^([0-9]{1,}.[\t]{0,}[\n]{0,})/', '', $intersession));
+            $this->intersessions[$key] = $intersession;
         }
         $this->bulletSlide(1, '代禱消息', implode("\n", $this->intersessions));
     }
