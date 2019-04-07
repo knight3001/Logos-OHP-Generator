@@ -99,7 +99,7 @@ class Verse extends Main
 
     protected function addStartSlide(): void
     {
-        $this->sectionStartSlide('讀經', $this->getTitleString(false));
+        $this->sectionStartSlide('讀經', $this->getTitleString(false), false);
     }
 
     protected function addMainSlide(): void
