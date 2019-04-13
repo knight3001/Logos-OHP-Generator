@@ -159,7 +159,7 @@ function processPreach(&$ppt, $collections)
     }
     if (isset($collections['outline'])) foreach ($collections['outline'] as $outline) {
         $outlineTitle = $outline['title'];
-        $outlineReadings = $outline['collections'];
+        $outlineReadings = isset($outline['collections'])? $outline['collections'] : array();
         $outlines[$outlineTitle] = processReading($ppt, $outlineReadings, true);
     }
 
