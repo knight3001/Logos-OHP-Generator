@@ -9,12 +9,13 @@
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 $localFolder = $OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR;
 $remoteFolder = 'https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/master/OHPGen/Core/Assets/';
-$remoteWorship = @file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/master/worship.json');
-$remoteHymns = @file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/master/hymns.json');
+$remoteWorship = file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/development/worship.json');
+$remoteHymns = file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/development/hymns.json');
 $types = ['worship', 'hymns'];
 $localWorship = [];
 $localHymns = [];
-
+var_dump($remoteWorship);
+var_dump($remoteHymns);
 if ($remoteWorship === FALSE && $remoteHymns === FALSE) {
     echo "Unable to download the latest song list, please check your internet connection or try again later.\n";
     exit();
