@@ -23,18 +23,10 @@ if ($remoteWorship === FALSE && $remoteHymns === FALSE) {
 $remoteWorship = json_decode($remoteWorship, true);
 $remoteHymns = json_decode($remoteHymns, true);
 
-// generate local json, we don't use the local json file.
+// get local json file
 foreach ($types as $type) {
-    $list = [];
     $varName = 'local' . ucfirst($type);
-    $files = scandir($localFolder . $type, 0);
-    foreach ($files as $filename) {
-        if ($filename !== '.' && $filename !== '..') {
-            $content = file_get_contents($localFolder . $type . DIRECTORY_SEPARATOR . $filename);
-            $list[$filename] = md5($content);
-        }
-    }
-    ${$varName} = $list;
+    ${$varName} = retrieveLocalJson($type, $localFolder);
 }
 
 // compare remote and local generated json, if remote song is not in local or md5 mismatch, we download them
@@ -64,8 +56,18 @@ foreach ($types as $type) {
 
 // we generate the local json file and store it, so we can update it to github
 foreach ($types as $type) {
+    $list = retrieveLocalJson($type, $localFolder);
+    $fp = fopen("$type.json", 'wb');
+    fwrite($fp, json_encode($list, JSON_PRETTY_PRINT));
+    fclose($fp);
+}
+
+echo "Songs are up to date.\n";
+
+
+function retrieveLocalJson($type, $localFolder)
+{
     $list = [];
-    $varName = 'local' . ucfirst($type);
     $files = scandir($localFolder . $type, 0);
     foreach ($files as $filename) {
         if ($filename !== '.' && $filename !== '..') {
@@ -73,7 +75,5 @@ foreach ($types as $type) {
             $list[$filename] = md5($content);
         }
     }
-    $fp = fopen($localFolder . $type . '.json', 'wb');
-    fwrite($fp, json_encode($list, JSON_PRETTY_PRINT));
-    fclose($fp);
+    return $list;
 }
