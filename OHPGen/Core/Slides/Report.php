@@ -87,7 +87,7 @@ class Report extends Main
                 $key = $i*3 + $j;
                 if (isset($this->reports[$key])) {
                     $content = trim($this->reports[$key]);
-                    $content = trim(preg_replace('/^([0-9]{1,}.[\t]{0,}[\n]{0,})/', '', $content));
+                    $content = trim(preg_replace('/^([0-9]{1,2}[\.][\t]{0,1}[\n]{0,1})/', '', $content));
                     $thisContent[] = $content;
                 }
             }
