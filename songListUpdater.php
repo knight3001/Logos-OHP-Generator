@@ -8,33 +8,36 @@
 
 $OHPFolder = __DIR__ . DIRECTORY_SEPARATOR . 'OHPGen' . DIRECTORY_SEPARATOR;
 $localFolder = $OHPFolder . 'Core' . DIRECTORY_SEPARATOR . 'Assets' . DIRECTORY_SEPARATOR;
-$remoteFolder = 'https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/master/OHPGen/Core/Assets/';
+$remoteFolder = 'https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/development/OHPGen/Core/Assets/';
 $remoteWorship = file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/development/worship.json');
 $remoteHymns = file_get_contents('https://raw.githubusercontent.com/eFiniLan/Logos-OHP-Generator/development/hymns.json');
 $types = ['worship', 'hymns'];
 $localWorship = [];
 $localHymns = [];
-var_dump($remoteWorship);
-var_dump($remoteHymns);
+
 if ($remoteWorship === FALSE && $remoteHymns === FALSE) {
     echo "Unable to download the latest song list, please check your internet connection or try again later.\n";
     exit();
 }
 
-// generate local version
+$remoteWorship = json_decode($remoteWorship, true);
+$remoteHymns = json_decode($remoteHymns, true);
+
+// generate local json, we don't use the local json file.
 foreach ($types as $type) {
     $list = [];
     $varName = 'local' . ucfirst($type);
-    $files = scandir($assetFolder . $type, 0);
+    $files = scandir($localFolder . $type, 0);
     foreach ($files as $filename) {
         if ($filename !== '.' && $filename !== '..') {
-            $content = file_get_contents($assetFolder . $type . DIRECTORY_SEPARATOR . $filename);
+            $content = file_get_contents($localFolder . $type . DIRECTORY_SEPARATOR . $filename);
             $list[$filename] = md5($content);
         }
     }
     ${$varName} = $list;
 }
 
+// compare remote and local generated json, if remote song is not in local or md5 mismatch, we download them
 foreach ($types as $type) {
     $remote = ${'remote' . ucfirst($type)};
     $local = ${'local' . ucfirst($type)};
@@ -44,12 +47,33 @@ foreach ($types as $type) {
             $toUpdate[] = $filename;
         }
     }
-    $remoteContent = file_get_contents($remoteFolder . $type . '/' . $filename);
-    if ($remoteContent !== FALSE) {
-        echo "Updating $type - $filename...\n";
-        $fp = fopen($localFolder . $type . DIRECTORY_SEPARATOR . $filename, 'wb');
-        fwrite($fp, $remoteContent);
-    } else {
-        echo "Unable to update $type - $filename...\n";
+    if (!empty($toUpdate)) {
+        echo sprintf("Updating %d %s songs\n", count($toUpdate), $type);
+        foreach ($toUpdate as $filename) {
+            $remoteContent = @file_get_contents($remoteFolder . $type . '/' . urlencode($filename));
+            if ($remoteContent !== FALSE) {
+                echo "Updating $type - $filename...\n";
+                $fp = fopen($localFolder . $type . DIRECTORY_SEPARATOR . $filename, 'wb');
+                fwrite($fp, $remoteContent);
+            } else {
+                echo "Unable to update $type - $filename...\n";
+            }
+        }
     }
+}
+
+// we generate the local json file and store it, so we can update it to github
+foreach ($types as $type) {
+    $list = [];
+    $varName = 'local' . ucfirst($type);
+    $files = scandir($localFolder . $type, 0);
+    foreach ($files as $filename) {
+        if ($filename !== '.' && $filename !== '..') {
+            $content = file_get_contents($localFolder . $type . DIRECTORY_SEPARATOR . $filename);
+            $list[$filename] = md5($content);
+        }
+    }
+    $fp = fopen($localFolder . $type . '.json', 'wb');
+    fwrite($fp, json_encode($list, JSON_PRETTY_PRINT));
+    fclose($fp);
 }
