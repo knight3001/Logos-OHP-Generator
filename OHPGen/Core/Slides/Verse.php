@@ -60,10 +60,10 @@ class Verse extends Main
     {
         $idxEnContents = array();
         $idxZhContents = array();
-        $enContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . VerseTable::$table[$this->book][2] . '-NIV.txt'));
-        $zhContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . VerseTable::$table[$this->book][2] . '-CUV.txt_utf8.txt'));
+        $BookName = VerseTable::$table[$this->book][2];
+        $enContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . $BookName . '-NIV.txt'));
+        $zhContents = explode("\n", file_get_contents(__DIR__ . '/../Assets/books/' . $BookName . '-CUV.txt_utf8.txt'));
         $lines = count($enContents);
-
         for ($i = 0; $i < $lines; $i++) {
             $aEnContent = explode(' ', $enContents[$i]);
             $idx = $aEnContent[0];
