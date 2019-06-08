@@ -35,16 +35,21 @@ foreach ($types as $type) {
     $local = ${'local' . ucfirst($type)};
     $toUpdate = [];
     foreach ($remote as $filename => $md5) {
-        if (!isset($local[$filename]) || $remote[$filename] !== $local[$filename]) {
-            $toUpdate[] = $filename;
+        if (!isset($local[$filename])) {
+            $toUpdate[] = ['file' => $filename, 'msg' => 'new'];
+        } else if ($remote[$filename] !== $local[$filename]) {
+            $toUpdate[] = ['file' => $filename, 'msg' => 'mismatch'];
         }
     }
+
     if (!empty($toUpdate)) {
         echo sprintf("Updating %d %s songs\n", count($toUpdate), $type);
-        foreach ($toUpdate as $filename) {
+        foreach ($toUpdate as $details) {
+            $filename = $details['file'];
+            $msg = $details['msg'];
             $remoteContent = @file_get_contents($remoteFolder . $type . '/' . urlencode($filename));
             if ($remoteContent !== FALSE) {
-                echo "Updating $type - $filename...\n";
+                echo "Updating $type - $filename...($msg)\n";
                 $fp = fopen($localFolder . $type . DIRECTORY_SEPARATOR . $filename, 'wb');
                 fwrite($fp, $remoteContent);
             } else {
@@ -72,6 +77,7 @@ function retrieveLocalJson($type, $localFolder)
     foreach ($files as $filename) {
         if ($filename !== '.' && $filename !== '..') {
             $content = file_get_contents($localFolder . $type . DIRECTORY_SEPARATOR . $filename);
+            $content = str_replace(array("\r", "\n"), '', $content);
             $list[$filename] = md5($content);
         }
     }
