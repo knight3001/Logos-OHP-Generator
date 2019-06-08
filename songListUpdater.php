@@ -77,6 +77,7 @@ function retrieveLocalJson($type, $localFolder)
     foreach ($files as $filename) {
         if ($filename !== '.' && $filename !== '..') {
             $content = file_get_contents($localFolder . $type . DIRECTORY_SEPARATOR . $filename);
+            $content = str_replace(array("\r", "\n"), '', $content);
             $list[$filename] = md5($content);
         }
     }
